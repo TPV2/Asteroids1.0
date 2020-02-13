@@ -16,6 +16,9 @@
 #include "Transform.h"
 #include "SDLGame.h"
 
+#include "FighterCtrl.h"
+#include "FighterViewer.h"
+
 #include "SDL_macros.h"
 
 using namespace std;
@@ -73,6 +76,7 @@ void PingPong::closeGame() {
 	delete entityManager_;
 }
 
+//Inicializa los correspondientes obj
 void PingPong::start() {
 	exit_ = false;
 
@@ -129,4 +133,25 @@ void PingPong::render() {
 
 	SDL_RenderPresent(game_->getRenderer());
 }
+
+#pragma region implementación
+//Crea un avión en el centro de windows y le agrega sus correspondientes componentes
+void PingPong::createPlane() {
+	Entity* plane = entityManager_->addEntity();
+	Transform* planeTr = plane->addComponent<Transform>();
+	planeTr->setPos(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2);
+	plane->addComponent<FighterCtrl>();
+	plane->addComponent<FighterViewer>();
+
+
+		/*	Entity *leftPaddle = entityManager_->addEntity();
+	Transform *leftPaddleTR = leftPaddle->addComponent<Transform>();
+	leftPaddle->addComponent<PaddleKBCtrl>();
+	leftPaddle->addComponent<PaddleMoveBehaviour>();
+	leftPaddle->addComponent<Rectangle,SDL_Color>({COLOR(0xAA0000FF)});
+	leftPaddleTR->setPos(5, game_->getWindowHeight() / 2 - 25);
+	leftPaddleTR->setWH(10, 50);*/
+}
+#pragma endregion
+
 

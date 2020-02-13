@@ -37,6 +37,7 @@
     <ClCompile Include="PaddleMouseCtrl.cpp" />
     <ClCompile Include="PaddleMoveBehaviour.cpp" />
     <ClCompile Include="PingPong.cpp" />
+    <ClCompile Include="FighterCtrl.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Resources.cpp" />
@@ -50,6 +51,7 @@
     <ClCompile Include="SimpleMoveBahviour.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="FighterViewer.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -74,6 +76,7 @@
     <ClInclude Include="PaddleMouseCtrl.h" />
     <ClInclude Include="PaddleMoveBehaviour.h" />
     <ClInclude Include="PingPong.h" />
+    <ClInclude Include="FighterCtrl.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Resources.h" />
@@ -87,6 +90,7 @@
     <ClInclude Include="SimpleMoveBahviour.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="FighterViewer.h" />
     <ClInclude Include="TexturesManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2D.h" />

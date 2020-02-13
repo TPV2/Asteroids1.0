@@ -21,6 +21,7 @@ private:
 	void handleInput();
 	void update();
 	void render();
+	void createPlane();
 
 	SDLGame* game_;
 	EntityManager* entityManager_;
