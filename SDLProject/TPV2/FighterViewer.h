@@ -1,11 +1,13 @@
 #pragma once
 #include "Component.h"
+#include "Transform.h"
+#include <SDL_rect.h>
 
 #pragma region const
-const uint PLANE_H = 47;
-const uint PLANE_W = 90;
-const int PLANE_X = 207;
-const int PLANE_Y = 250;
+const uint PLANE_X = 47;
+const uint PLANE_Y = 90;
+const int PLANE_W = 207;
+const int PLANE_H = 250;
 #pragma endregion
 
 
@@ -17,8 +19,7 @@ class FighterViewer :
 {
 private:
 	Texture* texture_ = nullptr;		//Textura con todos los aviones
-	SDL_Rect* destRect = nullptr;		//Rect del destino 
-	SDL_Rect* clipRect = nullptr;		//Rect del clip a renderizar
+	Transform* tr_ = nullptr;			//puntero al transform del objeto
 public:
 	FighterViewer(Texture* texture_);
 	~FighterViewer();

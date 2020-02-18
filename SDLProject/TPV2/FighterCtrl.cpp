@@ -1,27 +1,42 @@
 #include "FighterCtrl.h"
 #include "Entity.h"
+#include "InputHandler.h"
+#include "Transform.h"
+#include <math.h>
 
 FighterCtrl::FighterCtrl(): 
-	FighterCtrl(SDLK_RIGHT, SDLK_LEFT){}
+	FighterCtrl(SDLK_RIGHT, SDLK_LEFT,SDLK_UP){}
 
-FighterCtrl::FighterCtrl(SDL_Keycode right, SDL_Keycode left) :
-	Component(ecs::FighterCtrl), tr_(nullptr),right_(right),left_(left){}
+FighterCtrl::FighterCtrl(SDL_Keycode right, SDL_Keycode left, SDL_Keycode up) :
+	Component(ecs::FighterCtrl),tr_(nullptr),right_(right),left_(left),up_(up){}
 
-FighterCtrl::~FighterCtrl() {}
+FighterCtrl::~FighterCtrl() {
+	tr_ = nullptr;
+}
 
 void FighterCtrl::init() {
-	tr_ = GETCMP2_(ecs::Transform, Transform);
+	tr_ = GETCMP1_(Transform);
 }
 
 
 void FighterCtrl::update() {
 	InputHandler* ih = InputHandler::instance();
+	tr_->setPosX(tr_->getPos().getX() + tr_->getVel().getX());
+	tr_->setPosY(tr_->getPos().getY() + tr_->getVel().getY());
 	if (ih->keyDownEvent()) {
 		if (ih->isKeyDown(right_)) {
-			tr_->setVelY(tr_->getVel().getY() - 2);
+			tr_->setRot(tr_->getRot() + ANGLE_VEL);
 		}
 		else if (ih->isKeyDown(left_)) {
-			tr_->setVelY(tr_->getVel().getY() + 2);
+			tr_->setRot(tr_->getRot() - ANGLE_VEL);
+		}
+		else if (ih->isKeyDown(up_)) {	//Impulso * cos(ang) = x y sin = y
+			tr_->setVel({ IMPULSE * sin(M_PI* tr_->getRot() / 180.0f), - (IMPULSE * cos(M_PI * tr_->getRot() / 180.0) )});
+		}
+	}
+	else {
+		if ((tr_->getVel().getX() != 0.0) || (tr_->getVel().getY() != 0.0)) {
+			tr_->setVel({ DECREASE_VEL * tr_->getVel().getX(), DECREASE_VEL * tr_->getVel().getY() });
 		}
 	}
 }

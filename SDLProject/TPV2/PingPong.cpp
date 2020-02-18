@@ -143,7 +143,9 @@ void PingPong::render() {
 #pragma region implementación
 void PingPong::createFighter() {
 	Entity *fighter = entityManager_->addEntity();
-	fighter->addComponent<Transform>();
+	Transform* fighterTR = fighter->addComponent<Transform>();
+	//fighterTR->setPos({ double(game_->getWindowWidth() / 2),double(game_->getWindowHeight() / 2) });
+	//fighterTR->setWH(207, 250);
 	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
 	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
 	fighter->addComponent<FighterCtrl>();
