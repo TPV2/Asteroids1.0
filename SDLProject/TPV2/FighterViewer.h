@@ -1,21 +1,26 @@
 #pragma once
 #include "Component.h"
 
+#pragma region const
+const uint PLANE_H = 47;
+const uint PLANE_W = 90;
+const int PLANE_X = 207;
+const int PLANE_Y = 250;
+#pragma endregion
 
-const uint PLANE_H = 100;
-const uint PLANE_W = 100;
 
-class Transform;
+//class Transform;
 class Texture;
 
 class FighterViewer :
 	public Component
 {
 private:
-	Transform* tr_ = nullptr;
-	Texture* texture_ = nullptr;
+	Texture* texture_ = nullptr;		//Textura con todos los aviones
+	SDL_Rect* destRect = nullptr;		//Rect del destino 
+	SDL_Rect* clipRect = nullptr;		//Rect del clip a renderizar
 public:
-	FighterViewer(Texture* texture);//TODO: supongo que así se construye 
+	FighterViewer(Texture* texture_);
 	~FighterViewer();
 	void init() override;
 	void draw() override;

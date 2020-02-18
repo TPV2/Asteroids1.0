@@ -16,10 +16,15 @@
 #include "Transform.h"
 #include "SDLGame.h"
 
-#include "FighterCtrl.h"
-#include "FighterViewer.h"
-
 #include "SDL_macros.h"
+
+#pragma region includesImplementación
+#include "FighterViewer.h"
+#include "FighterCtrl.h"
+#include "Health.h"
+#pragma endregion
+
+
 
 using namespace std;
 
@@ -37,8 +42,8 @@ PingPong::~PingPong() {
 void PingPong::initGame() {
 
 	game_ = SDLGame::init("Ping Pong", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
-
 	entityManager_ = new EntityManager(game_);
+
 
 	Entity *leftPaddle = entityManager_->addEntity();
 	Transform *leftPaddleTR = leftPaddle->addComponent<Transform>();
@@ -70,13 +75,14 @@ void PingPong::initGame() {
 	gameManager->addComponent<GameLogic>(ballTR, leftPaddleTR, rightPaddleTR);
 	gameManager->addComponent<ScoreViewer>();
 	gameManager->addComponent<GameCtrl>(GETCMP2(ball, Transform));
+
+	createFighter();
 }
 
 void PingPong::closeGame() {
 	delete entityManager_;
 }
 
-//Inicializa los correspondientes obj
 void PingPong::start() {
 	exit_ = false;
 
@@ -135,22 +141,12 @@ void PingPong::render() {
 }
 
 #pragma region implementación
-//Crea un avión en el centro de windows y le agrega sus correspondientes componentes
-void PingPong::createPlane() {
-	Entity* plane = entityManager_->addEntity();
-	Transform* planeTr = plane->addComponent<Transform>();
-	planeTr->setPos(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2);
-	plane->addComponent<FighterCtrl>();
-	plane->addComponent<FighterViewer>();
-
-
-		/*	Entity *leftPaddle = entityManager_->addEntity();
-	Transform *leftPaddleTR = leftPaddle->addComponent<Transform>();
-	leftPaddle->addComponent<PaddleKBCtrl>();
-	leftPaddle->addComponent<PaddleMoveBehaviour>();
-	leftPaddle->addComponent<Rectangle,SDL_Color>({COLOR(0xAA0000FF)});
-	leftPaddleTR->setPos(5, game_->getWindowHeight() / 2 - 25);
-	leftPaddleTR->setWH(10, 50);*/
+void PingPong::createFighter() {
+	Entity *fighter = entityManager_->addEntity();
+	fighter->addComponent<Transform>();
+	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
+	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
+	fighter->addComponent<FighterCtrl>();
 }
 #pragma endregion
 

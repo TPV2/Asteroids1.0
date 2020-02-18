@@ -18,9 +18,12 @@ enum CmpId : CmpIdType {
 	PaddleMouseCtrl,
 	GameCtrl,
 	GameLogic,
-
-	FighterCtrl,
+#pragma region implementación
 	FighterViewer,
+	FighterCtrl,
+	Health,
+#pragma endregion
+
 	//
 	// don't touch the rest of this enum, it is to identify the max
 	// number of components

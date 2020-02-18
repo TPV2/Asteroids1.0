@@ -21,7 +21,11 @@ private:
 	void handleInput();
 	void update();
 	void render();
-	void createPlane();
+
+#pragma region implementación
+	void createFighter();
+#pragma endregion
+
 
 	SDLGame* game_;
 	EntityManager* entityManager_;

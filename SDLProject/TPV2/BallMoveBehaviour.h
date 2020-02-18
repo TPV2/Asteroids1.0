@@ -3,7 +3,6 @@
 #include "Component.h"
 #include "Transform.h"
 
-//quitar
 class BallMoveBehaviour: public Component {
 public:
 	BallMoveBehaviour();

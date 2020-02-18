@@ -5,11 +5,9 @@
 #include "ecs.h"
 #include "SDLGame.h"
 
-using uint = unsigned int;
-
-
 class Entity;
 
+using uint = unsigned int;
 
 class Component {
 protected:

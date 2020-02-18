@@ -29,14 +29,13 @@ bool SDLTexturesManager::init() {
 	int imgInit_ret = IMG_Init(
 			IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP);
 	assert(imgInit_ret != 0);
-
 	initialized_ = true;
 
 	return true;
 }
 
-bool SDLTexturesManager::loadFromImg(int tag, SDL_Renderer *renderer,
-		string fileName) {
+bool SDLTexturesManager::loadFromImg(std::size_t tag,
+		SDL_Renderer *renderer, const string &fileName) {
 
 	if (!initialized_)
 		return false;
@@ -51,8 +50,9 @@ bool SDLTexturesManager::loadFromImg(int tag, SDL_Renderer *renderer,
 	return false;
 }
 
-bool SDLTexturesManager::loadFromText(int tag, SDL_Renderer *renderer,
-		string text, Font &font, SDL_Color color) {
+bool SDLTexturesManager::loadFromText(std::size_t tag,
+		SDL_Renderer *renderer, const string &text, const Font *font,
+		const SDL_Color &color) {
 
 	if (!initialized_)
 		return false;
@@ -68,7 +68,7 @@ bool SDLTexturesManager::loadFromText(int tag, SDL_Renderer *renderer,
 
 }
 
-void SDLTexturesManager::storeTexture(int tag, Texture *texture) {
+void SDLTexturesManager::storeTexture(std::size_t tag, Texture *texture) {
 	Texture *curr = textures_[tag];
 	if (curr != nullptr)
 		delete curr;

@@ -28,6 +28,7 @@
     <ClCompile Include="FontsManager.cpp" />
     <ClCompile Include="GameCtrl.cpp" />
     <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="jute.cpp" />
     <ClCompile Include="main.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="FontsManager.h" />
     <ClInclude Include="GameCtrl.h" />
     <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="jute.h" />
     <ClInclude Include="Manager.h" />

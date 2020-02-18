@@ -3,19 +3,23 @@
 #include "Texture.h"
 #include "Resources.h"
 #include "SDL_macros.h"
-#include "Transform.h"
 
 
 FighterViewer::FighterViewer(Texture* texture) :
-	Component(ecs::FighterViewer), tr_(nullptr) ,texture_(texture) {}
-
-FighterViewer::~FighterViewer() {}
-
-void FighterViewer::init() {
-	tr_ = GETCMP2_(ecs::Transform, Transform);
+	Component(ecs::FighterViewer), texture_(texture) {
 }
 
+FighterViewer::~FighterViewer() {
+	delete texture_, destRect;
+}
+
+//Inicializa el render del avión con los datos dados por el enunciado
+void FighterViewer::init() {
+	destRect = new SDL_Rect({ PLANE_X,PLANE_Y,50,50 });
+	clipRect = new SDL_Rect({ PLANE_H,PLANE_W,PLANE_X,PLANE_Y });
+}
+
+//Renderiza el avión en función del rect inicializado en init();
 void FighterViewer::draw() {
-	SDL_Rect rect = { tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH() };
-	texture_->render(game_->getRenderer(), rect);
+	texture_->render(*destRect, *clipRect);
 }
