@@ -24,6 +24,7 @@ private:
 
 #pragma region implementación
 	void createFighter();
+	void createBulletsPool();
 #pragma endregion
 
 

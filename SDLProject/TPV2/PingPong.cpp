@@ -22,6 +22,7 @@
 #include "FighterViewer.h"
 #include "FighterCtrl.h"
 #include "Health.h"
+#include "BulletsPool.h"
 #pragma endregion
 
 
@@ -77,6 +78,7 @@ void PingPong::initGame() {
 	gameManager->addComponent<GameCtrl>(GETCMP2(ball, Transform));
 
 	createFighter();
+	createBulletsPool();
 }
 
 void PingPong::closeGame() {
@@ -144,11 +146,19 @@ void PingPong::render() {
 void PingPong::createFighter() {
 	Entity *fighter = entityManager_->addEntity();
 	Transform* fighterTR = fighter->addComponent<Transform>();
-	//fighterTR->setPos({ double(game_->getWindowWidth() / 2),double(game_->getWindowHeight() / 2) });
-	//fighterTR->setWH(207, 250);
 	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
 	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
 	fighter->addComponent<FighterCtrl>();
+}
+void PingPong::createBulletsPool()
+{	
+	Entity* bulletsPool = entityManager_->addEntity();
+	bulletsPool->addComponent<BulletsPool>();
+	//bulletsPool->addComponent<BulletsMotion>();
+	//bulletsPool->addComponent<BulletsViewer>();
+
+
+
 }
 #pragma endregion
 

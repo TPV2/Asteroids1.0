@@ -22,6 +22,9 @@ enum CmpId : CmpIdType {
 	FighterViewer,
 	FighterCtrl,
 	Health,
+	BulletsPool,
+	BulletsMotion,
+	BulletsViewer,
 #pragma endregion
 
 	//
