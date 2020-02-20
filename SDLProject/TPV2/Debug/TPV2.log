@@ -1,5 +1,5 @@
-﻿G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(142,5): warning MSB4011: "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (141,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
-  FighterCtrl.cpp
-  PingPong.cpp
-  Generando código...
+﻿G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(152,5): warning MSB4011: "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (151,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
+  BulletsPool.cpp
+G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\BulletsPool.cpp(26,27): warning C4018: '<': no coinciden signed/unsigned
+G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\BulletsPool.cpp(38,20): warning C4018: '<': no coinciden signed/unsigned
   TPV2.vcxproj -> G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\bin\TPV2Debug.exe

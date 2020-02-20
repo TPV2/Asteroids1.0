@@ -21,6 +21,7 @@ public:
 		Star,
 		//Implementación
 		Heart,
+		Bullet,
 		
 		// text
 		HelloWorld,
