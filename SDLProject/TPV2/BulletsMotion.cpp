@@ -12,18 +12,23 @@ void BulletsMotion::update() {
 
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {
-			Vector2D bulletPos = fighterTr_->getPos() + Vector2D(fighterTr_->getW() / 2,
-				fighterTr_->getH() / 2) + Vector2D(0, -(fighterTr_->getH() / 2 + 5.0)).rotate(fighterTr_->getRot());
-			Vector2D bulletVel = Vector2D(0, -1).rotate(fighterTr_->getRot()) * 2;
-			pool_->getPool()[i]->setPos(bulletPos);
-			pool_->getPool()[i]->setVel(bulletVel);
-			if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth() ||
-				pool_->getPool()[i]->getPos()->getX() <= 0 &&
-				pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight() ||
-				pool_->getPool()[i]->getPos()->getY() <= 0) {
-				pool_->getPool()[i]->setObject(false);
-				cout << "Bala salio de la pantalla \n";
+			Bullet* currBullet = pool_->getPool()[i];
+			if (currBullet->getPos()->getX() > game_->getWindowWidth() ||
+				currBullet->getPos()->getX() < 0.0 &&
+				currBullet->getPos()->getY() > game_->getWindowHeight() ||
+				currBullet->getPos()->getY() < 0.0) {
+				cout << " La bala " << i << " salio de la pantalla \n";
+				currBullet->setObject(false);
+				currBullet->setVel(0);
 			}
+			else
+			{
+				Vector2D currSpeed = { currBullet->getPos()->getX() + currBullet->getDir()->getX() * currBullet->getVel() ,
+				currBullet->getPos()->getY() + currBullet->getDir()->getY() * currBullet->getVel() };
+				cout << currSpeed << endl;
+				currBullet->setPos(currSpeed);
+			}
+			currBullet = nullptr;
 		}
 	}
 }

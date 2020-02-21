@@ -49,7 +49,7 @@ void PingPong::initGame() {
 	entityManager_ = new EntityManager(game_);
 
 
-	Entity *leftPaddle = entityManager_->addEntity();
+	/*Entity *leftPaddle = entityManager_->addEntity();
 	Transform *leftPaddleTR = leftPaddle->addComponent<Transform>();
 	leftPaddle->addComponent<PaddleKBCtrl>();
 	leftPaddle->addComponent<PaddleMoveBehaviour>();
@@ -78,10 +78,9 @@ void PingPong::initGame() {
 	gameManager->addComponent<ScoreManager>(1);
 	gameManager->addComponent<GameLogic>(ballTR, leftPaddleTR, rightPaddleTR);
 	gameManager->addComponent<ScoreViewer>();
-	gameManager->addComponent<GameCtrl>(GETCMP2(ball, Transform));
+	gameManager->addComponent<GameCtrl>(GETCMP2(ball, Transform));*/
 
-	createFighter();
-	createBulletsPool();
+	createEntities();
 }
 
 void PingPong::closeGame() {
@@ -146,24 +145,26 @@ void PingPong::render() {
 }
 
 #pragma region implementación
-void PingPong::createFighter() {
-	Entity *fighter = entityManager_->addEntity();
+void PingPong::createEntities() {
+#pragma region creación del avión
+	Entity* fighter = entityManager_->addEntity();
 	Transform* fighterTR = fighter->addComponent<Transform>();
 	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
 	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
 	fighter->addComponent<FighterCtrl>();
+#pragma endregion
 
+#pragma region creación del bullet pool
 	Entity* bulletsPool = entityManager_->addEntity();
 	BulletsPool* pool = bulletsPool->addComponent<BulletsPool>();
 	bulletsPool->addComponent<BulletsViewer>(game_->getTextureMngr()->getTexture(Resources::Bullet));
 	bulletsPool->addComponent<BulletsMotion>(fighterTR);
 	fighter->addComponent<Gun>(pool);
+#pragma endregion
 
+	game_->getAudioMngr()->playMusic(Resources::March, 1);
 }
-void PingPong::createBulletsPool()
-{	
 
-}
 #pragma endregion
 
 

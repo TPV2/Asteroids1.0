@@ -27,6 +27,5 @@ void FighterViewer::init() {
 void FighterViewer::draw() {
 	SDL_Rect destRect = RECT(tr_->getPos().getX(), tr_->getPos().getY(), tr_->getW(), tr_->getH());
 	SDL_Rect clipRect = RECT(PLANE_X, PLANE_Y, PLANE_W, PLANE_H);
-
 	texture_->render(destRect,tr_->getRot(), clipRect);
 }

@@ -1,57 +1,20 @@
-﻿G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(152,5): warning MSB4011: "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (151,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
-  AudioManager.cpp
+﻿G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(162,5): warning MSB4011: "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (161,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
   BallMoveBehaviour.cpp
-  Collisions.cpp
-  Component.cpp
-  Entity.cpp
-  Font.cpp
-  FontsManager.cpp
-  GameCtrl.cpp
-  GameLogic.cpp
-  Health.cpp
-  InputHandler.cpp
-  jute.cpp
-  main.cpp
-  Manager.cpp
-  ObjectPool.cpp
-  PaddleKBCtrl.cpp
-  PaddleMouseCtrl.cpp
-  PaddleMoveBehaviour.cpp
   PingPong.cpp
   FighterCtrl.cpp
-  Generando código...
-  Compilando...
-  RandomNumberGenerator.cpp
-  Rectangle.cpp
   Resources.cpp
-  ScoreManager.cpp
-  ScoreViewer.cpp
-  SDLAudioManager.cpp
-  SDLFontsManager.cpp
-G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\SDLFontsManager.cpp(38,19): warning C4267: 'argumento': conversión de 'size_t' a 'const int'; posible pérdida de datos
-G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\SDLFontsManager.cpp(47,26): warning C4267: 'argumento': conversión de 'size_t' a 'const int'; posible pérdida de datos
-G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\SDLFontsManager.cpp(50,13): warning C4267: 'argumento': conversión de 'size_t' a 'const int'; posible pérdida de datos
-  SDLGame.cpp
-  SDLTexturesManager.cpp
-  sdl_macros.cpp
-  SimpleMoveBahviour.cpp
-  SRandBasedGenerator.cpp
-G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\SRandBasedGenerator.cpp(11,8): warning C4244: 'inicializando': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Texture.cpp
-  FighterViewer.cpp
-  TexturesManager.cpp
   Transform.cpp
-  Vector2D.cpp
   Generando código...
      Creando biblioteca G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\bin\TPV2Debug.lib y objeto G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\bin\TPV2Debug.exp
 Font.obj : error LNK2019: símbolo externo TTF_OpenFont sin resolver al que se hace referencia en la función "public: bool __cdecl Font::load(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?load@Font@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
 Font.obj : error LNK2019: símbolo externo TTF_RenderText_Solid sin resolver al que se hace referencia en la función "public: struct SDL_Surface * __cdecl Font::renderText(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,struct SDL_Color)const " (?renderText@Font@@QEBAPEAUSDL_Surface@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@USDL_Color@@@Z)
 Font.obj : error LNK2019: símbolo externo TTF_CloseFont sin resolver al que se hace referencia en la función "public: void __cdecl Font::close(void)" (?close@Font@@QEAAXXZ)
-InputHandler.obj : error LNK2019: símbolo externo SDL_GetKeyboardState sin resolver al que se hace referencia en la función "private: __cdecl InputHandler::InputHandler(void)" (??0InputHandler@@AEAA@XZ)
-InputHandler.obj : error LNK2019: símbolo externo SDL_PollEvent sin resolver al que se hace referencia en la función "public: void __cdecl InputHandler::update(void)" (?update@InputHandler@@QEAAXXZ)
-PaddleKBCtrl.obj : error LNK2019: símbolo externo SDL_GetScancodeFromKey sin resolver al que se hace referencia en la función "public: bool __cdecl InputHandler::isKeyDown(int)" (?isKeyDown@InputHandler@@QEAA_NH@Z)
+Gun.obj : error LNK2019: símbolo externo SDL_GetScancodeFromKey sin resolver al que se hace referencia en la función "public: bool __cdecl InputHandler::isKeyDown(int)" (?isKeyDown@InputHandler@@QEAA_NH@Z)
+PaddleKBCtrl.obj : error LNK2001: símbolo externo SDL_GetScancodeFromKey sin resolver
 PingPong.obj : error LNK2001: símbolo externo SDL_GetScancodeFromKey sin resolver
 FighterCtrl.obj : error LNK2001: símbolo externo SDL_GetScancodeFromKey sin resolver
+InputHandler.obj : error LNK2019: símbolo externo SDL_GetKeyboardState sin resolver al que se hace referencia en la función "private: __cdecl InputHandler::InputHandler(void)" (??0InputHandler@@AEAA@XZ)
+InputHandler.obj : error LNK2019: símbolo externo SDL_PollEvent sin resolver al que se hace referencia en la función "public: void __cdecl InputHandler::update(void)" (?update@InputHandler@@QEAAXXZ)
 PingPong.obj : error LNK2019: símbolo externo SDL_GetWindowFlags sin resolver al que se hace referencia en la función "private: void __cdecl PingPong::handleInput(void)" (?handleInput@PingPong@@AEAAXXZ)
 PingPong.obj : error LNK2019: símbolo externo SDL_SetWindowFullscreen sin resolver al que se hace referencia en la función "private: void __cdecl PingPong::handleInput(void)" (?handleInput@PingPong@@AEAAXXZ)
 PingPong.obj : error LNK2019: símbolo externo SDL_SetRenderDrawColor sin resolver al que se hace referencia en la función "private: void __cdecl PingPong::render(void)" (?render@PingPong@@AEAAXXZ)

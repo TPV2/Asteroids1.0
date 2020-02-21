@@ -4,42 +4,54 @@
 #include "Resources.h"
 #include "SDLGame.h"
 
+#pragma region constantes
+const double BULLET_W = 10;
+const double BULLET_H = 10;
+const double BULLET_VEL = 5;
+#pragma endregion
+
+
 struct Bullet
 {
 private:
 	Vector2D pos_;
 	Vector2D scale_;
-	Vector2D vel_;
+	double vel_;
+	Vector2D dir_;
 	double angle_;
 	bool used_ = false;
 	//Texture* texture_ = nullptr; //No sé como poner la textura desde aquí
 public:
-	Bullet(Vector2D pos, Vector2D scale, Vector2D vel, double angle) :
-		pos_(pos), scale_(scale), vel_(vel), angle_(angle) {}
+	Bullet(Vector2D pos, Vector2D scale, double angle) :
+		pos_(pos), scale_(scale), vel_(BULLET_VEL), angle_(angle) {}
 	Bullet() :
-		pos_({ 0.0,0.0 }), scale_({ 0.0,0.0 }), vel_({ 0.0,0.0 }), angle_(0) {}
+		pos_({ 0.0,0.0 }), scale_({ BULLET_W,BULLET_H }), vel_(BULLET_VEL), angle_(0) {};
 	//Para saber si un objeto está en uso
 	bool isUsed() { return used_; };
 	//Para "setear" un objeto
 	void setObject(bool status) { used_ = status; };
-	void startBullet(Vector2D pos, Vector2D vel) {
+	void startBullet(Vector2D pos, Vector2D dir) {
+		vel_ = BULLET_VEL;
 		pos_ = pos;
-		vel_ = vel;
+		dir_ = dir;
 		used_ = true;
 	}
 
 
 #pragma region getters
 	const Vector2D* getPos() { return &pos_; };
-	const Vector2D* getVel() { return &vel_; };
+	const double getVel() { return vel_; };
 	const Vector2D* getScale() { return &scale_; };
-	const double* getAngle() { return &angle_; };
+	const double getAngle() { return angle_; };
+	const Vector2D* getDir() { return &dir_; };
+
 #pragma endregion
 #pragma region setters
 	void setPos(Vector2D pos) { pos_ = pos; };
-	void setVel(Vector2D vel) { vel_ = vel; };
+	void setVel(double vel) { vel_ = vel; };
 	void setScale(Vector2D scale) { scale_ = scale; };
 	void setAngle(double angle) { angle_ = angle; };
+	void setDir(Vector2D dir) { dir_ = dir; };
 #pragma endregion
 
 };

@@ -34,8 +34,10 @@ public:
 		Beat,
 		Cheer,
 		Boooo,
+		March,
 
 		// sound effects
+		Shoot,
 		Wall_Hit,
 		Paddle_Hit
 	};
