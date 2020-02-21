@@ -141,6 +141,18 @@
     <ClCompile Include="BulletsViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidsPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidsViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidsMotion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="checkML.h">
@@ -270,6 +282,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BulletsViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidsPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidsViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidsMotion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
