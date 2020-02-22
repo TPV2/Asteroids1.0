@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "ScoreManager.h"
 
+//Cuando se gana?
 class ScoreViewer: public Component {
 public:
 	ScoreViewer();

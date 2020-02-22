@@ -23,8 +23,9 @@ public:
 	virtual void draw() override;
 	virtual void init() override;
 
-	void restartLives() { lives_ = INITIAL_LIVES; };
 	void removeLives(int amount);
 	void addLives(int amount) { lives_ += amount; };
+	const int getLives() { return lives_; };
+	void resetLives() { lives_ = INITIAL_LIVES; };
 };
 

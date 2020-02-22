@@ -31,7 +31,7 @@ private:
 	EntityManager* entityManager_;
 	bool exit_;
 
-	const static int _WINDOW_WIDTH_ = 1920;  //1280 / 1.5; //640;
-	const static int _WINDOW_HEIGHT_ = 1080; //1024 / 1.5;// 480;
+	const static int _WINDOW_WIDTH_ = 640;  //1280 / 1.5; //640;
+	const static int _WINDOW_HEIGHT_ = 480; //1024 / 1.5;// 480;
 
 };

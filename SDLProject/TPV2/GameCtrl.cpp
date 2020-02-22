@@ -1,14 +1,6 @@
 #include "GameCtrl.h"
-
 #include "Entity.h"
 #include "InputHandler.h"
-
-GameCtrl::GameCtrl(Transform *ballTR) :
-		Component(ecs::GameCtrl), //
-		ballTR_(ballTR), //
-		scoreManager_(nullptr) //
-{
-}
 
 GameCtrl::~GameCtrl() {
 }
@@ -17,26 +9,22 @@ void GameCtrl::init() {
 	scoreManager_ = GETCMP1_(ScoreManager);
 }
 
+
 void GameCtrl::update() {
 
-	if (InputHandler::instance()->keyDownEvent()) {
-		if (!scoreManager_->isRunning()) {
-			RandomNumberGenerator *r = game_->getRandGen();
+	if (!scoreManager_->isRunning()) {
+		if (InputHandler::instance()->keyDownEvent()) {
+			astPool_->generateAsteroids(ASTEROIDS_NUM);
 			scoreManager_->setRunning(true);
-			int dx = 1 - 2 * r->nextInt(0, 2); // 1 or -1
-			int dy = 1 - 2 * r->nextInt(0, 2); // 1 or -1
-			Vector2D v(dx * r->nextInt(6, 7), // 2 to 6
-			dy * r->nextInt(2, 7) // 2 to 6
-					);
-			ballTR_->setVel(v.normalize() * 5);
-
-			// rest the score if the game is over
-			if (scoreManager_->isGameOver()) {
-				scoreManager_->setLeftScore(0);
-				scoreManager_->setRightScore(0);
-			}
 		}
 	}
+	if (health_->getLives() < 0) {
+		scoreManager_->setScore(0);
+		health_->resetLives();
+		scoreManager_->gameOver();
+		scoreManager_->setRunning(false);
+	}
+
 }
 
 void GameCtrl::draw() {

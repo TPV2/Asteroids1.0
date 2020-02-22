@@ -109,9 +109,7 @@ void PingPong::update() {
 void PingPong::render() {
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(game_->getRenderer());
-
 	entityManager_->draw();
-
 	SDL_RenderPresent(game_->getRenderer());
 }
 
@@ -119,7 +117,7 @@ void PingPong::render() {
 void PingPong::createEntities() {
 #pragma region creación del avión
 	Entity* fighter = entityManager_->addEntity();
-	Transform* fighterTR = fighter->addComponent<Transform>();
+	fighter->addComponent<Transform>();
 	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
 	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
 	fighter->addComponent<FighterCtrl>();
@@ -129,16 +127,24 @@ void PingPong::createEntities() {
 	Entity* bulletsPool = entityManager_->addEntity();
 	BulletsPool* pool = bulletsPool->addComponent<BulletsPool>();
 	bulletsPool->addComponent<BulletsViewer>(game_->getTextureMngr()->getTexture(Resources::Bullet));
-	bulletsPool->addComponent<BulletsMotion>(fighterTR);
+	bulletsPool->addComponent<BulletsMotion>(GETCMP2(fighter,Transform));
 	fighter->addComponent<Gun>(pool);
 #pragma endregion
 
 #pragma region creación del asteroid pool
 	Entity* asteroidsPool = entityManager_->addEntity();
-	AsteroidsPool* astPool = asteroidsPool->addComponent<AsteroidsPool>();
-	astPool->generateAsteroids(10);	//GENERA 10 ASTEROIDES PRUEBA
+	asteroidsPool->addComponent<AsteroidsPool>();
 	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
 	asteroidsPool->addComponent<AsteroidsMotion>();
+#pragma endregion
+	//Pendiente gameLogic
+#pragma region Creación del game manager
+	Entity* gameManager = entityManager_->addEntity();
+	gameManager->addComponent<ScoreManager>();
+	gameManager->addComponent<GameCtrl>(GETCMP2(asteroidsPool,AsteroidsPool),GETCMP2(fighter,Health));
+	gameManager->addComponent<ScoreViewer>();
+	gameManager->addComponent<GameLogic>(GETCMP2(asteroidsPool, AsteroidsPool),
+		GETCMP2(bulletsPool, BulletsPool), GETCMP2(fighter, Health), GETCMP2(fighter, Transform));
 #pragma endregion
 
 	game_->getAudioMngr()->playMusic(Resources::March, 1);
