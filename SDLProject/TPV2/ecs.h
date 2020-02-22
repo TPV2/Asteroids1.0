@@ -26,6 +26,9 @@ enum CmpId : CmpIdType {
 	BulletsMotion,
 	BulletsViewer,
 	Gun,
+	AsteroidsPool,
+	AsteroidsMotion,
+	AsteroidsViewer,
 #pragma endregion
 
 	//

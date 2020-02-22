@@ -22,6 +22,7 @@ public:
 		//Implementación
 		Heart,
 		Bullet,
+		Asteroid,
 		
 		// text
 		HelloWorld,

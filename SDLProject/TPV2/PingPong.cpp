@@ -26,6 +26,9 @@
 #include "BulletsMotion.h"
 #include "BulletsViewer.h"
 #include "Gun.h"
+#include "AsteroidsPool.h"
+#include "AsteroidsViewer.h"
+#include "AsteroidsMotion.h"
 #pragma endregion
 
 
@@ -47,38 +50,6 @@ void PingPong::initGame() {
 
 	game_ = SDLGame::init("Ping Pong", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 	entityManager_ = new EntityManager(game_);
-
-
-	/*Entity *leftPaddle = entityManager_->addEntity();
-	Transform *leftPaddleTR = leftPaddle->addComponent<Transform>();
-	leftPaddle->addComponent<PaddleKBCtrl>();
-	leftPaddle->addComponent<PaddleMoveBehaviour>();
-	leftPaddle->addComponent<Rectangle,SDL_Color>({COLOR(0xAA0000FF)});
-	leftPaddleTR->setPos(5, game_->getWindowHeight() / 2 - 25);
-	leftPaddleTR->setWH(10, 50);
-
-	Entity *rightPaddle = entityManager_->addEntity();
-	Transform *rightPaddleTR = rightPaddle->addComponent<Transform>();
-	rightPaddle->addComponent<PaddleMouseCtrl>();
-	rightPaddle->addComponent<PaddleMoveBehaviour>();
-	rightPaddle->addComponent<Rectangle,SDL_Color>({COLOR(0x0000AAFF)});
-	rightPaddleTR->setPos(game_->getWindowWidth() - 15,
-			game_->getWindowHeight() / 2 - 25);
-	rightPaddleTR->setWH(10, 50);
-
-	Entity *ball = entityManager_->addEntity();
-	Transform *ballTR = ball->addComponent<Transform>();
-	ball->addComponent<BallMoveBehaviour>();
-	ball->addComponent<Rectangle>();
-	ballTR->setPos(game_->getWindowWidth() / 2 - 6,
-			game_->getWindowHeight() / 2 - 6);
-	ballTR->setWH(11, 11);
-
-	Entity *gameManager = entityManager_->addEntity();
-	gameManager->addComponent<ScoreManager>(1);
-	gameManager->addComponent<GameLogic>(ballTR, leftPaddleTR, rightPaddleTR);
-	gameManager->addComponent<ScoreViewer>();
-	gameManager->addComponent<GameCtrl>(GETCMP2(ball, Transform));*/
 
 	createEntities();
 }
@@ -160,6 +131,14 @@ void PingPong::createEntities() {
 	bulletsPool->addComponent<BulletsViewer>(game_->getTextureMngr()->getTexture(Resources::Bullet));
 	bulletsPool->addComponent<BulletsMotion>(fighterTR);
 	fighter->addComponent<Gun>(pool);
+#pragma endregion
+
+#pragma region creación del asteroid pool
+	Entity* asteroidsPool = entityManager_->addEntity();
+	AsteroidsPool* astPool = asteroidsPool->addComponent<AsteroidsPool>();
+	astPool->generateAsteroids(10);	//GENERA 10 ASTEROIDES PRUEBA
+	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
+	asteroidsPool->addComponent<AsteroidsMotion>();
 #pragma endregion
 
 	game_->getAudioMngr()->playMusic(Resources::March, 1);

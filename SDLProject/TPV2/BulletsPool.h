@@ -9,8 +9,7 @@ const uint BULLET_NUM = 10;
 #pragma endregion
 
 
-class BulletsPool :
-	public Component
+class BulletsPool : public Component
 {
 private:
 	ObjectPool<Bullet, BULLET_NUM> obPool;

@@ -4,7 +4,6 @@
 #include <SDL_rect.h>
 #include "Entity.h"
 
-
 void BulletsViewer::init() {
 	pool_ = GETCMP1_(BulletsPool);
 }
@@ -23,6 +22,4 @@ void BulletsViewer::draw() {
 				endl;*/
 		}
 	}
-
-
 }
