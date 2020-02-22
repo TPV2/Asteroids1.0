@@ -5,8 +5,8 @@
 #include "SDLGame.h"
 
 #pragma region constantes
-const double BULLET_W = 10;
-const double BULLET_H = 10;
+const double BULLET_W = 4;
+const double BULLET_H = 4;
 const double BULLET_VEL = 5;
 #pragma endregion
 

@@ -21,6 +21,7 @@ enum CmpId : CmpIdType {
 #pragma region implementación
 	FighterViewer,
 	FighterCtrl,
+	FighterMotion,
 	Health,
 	BulletsPool,
 	BulletsMotion,

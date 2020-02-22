@@ -21,6 +21,7 @@
 #pragma region includesImplementación
 #include "FighterViewer.h"
 #include "FighterCtrl.h"
+#include "FighterMotion.h"
 #include "Health.h"
 #include "BulletsPool.h"
 #include "BulletsMotion.h"
@@ -115,39 +116,50 @@ void PingPong::render() {
 
 #pragma region implementación
 void PingPong::createEntities() {
-#pragma region creación del avión
-	Entity* fighter = entityManager_->addEntity();
-	fighter->addComponent<Transform>();
-	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
-	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
-	fighter->addComponent<FighterCtrl>();
-#pragma endregion
 
-#pragma region creación del bullet pool
-	Entity* bulletsPool = entityManager_->addEntity();
-	BulletsPool* pool = bulletsPool->addComponent<BulletsPool>();
-	bulletsPool->addComponent<BulletsViewer>(game_->getTextureMngr()->getTexture(Resources::Bullet));
-	bulletsPool->addComponent<BulletsMotion>(GETCMP2(fighter,Transform));
-	fighter->addComponent<Gun>(pool);
-#pragma endregion
+	createFighter();
+	//createAsteroids();
 
-#pragma region creación del asteroid pool
-	Entity* asteroidsPool = entityManager_->addEntity();
-	asteroidsPool->addComponent<AsteroidsPool>();
-	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
-	asteroidsPool->addComponent<AsteroidsMotion>();
-#pragma endregion
+
 	//Pendiente gameLogic
 #pragma region Creación del game manager
-	Entity* gameManager = entityManager_->addEntity();
-	gameManager->addComponent<ScoreManager>();
-	gameManager->addComponent<GameCtrl>(GETCMP2(asteroidsPool,AsteroidsPool),GETCMP2(fighter,Health));
-	gameManager->addComponent<ScoreViewer>();
-	gameManager->addComponent<GameLogic>(GETCMP2(asteroidsPool, AsteroidsPool),
-		GETCMP2(bulletsPool, BulletsPool), GETCMP2(fighter, Health), GETCMP2(fighter, Transform));
+	//Entity* gameManager = entityManager_->addEntity();
+	//gameManager->addComponent<ScoreManager>();
+	//gameManager->addComponent<GameCtrl>(GETCMP2(asteroidsPool,AsteroidsPool),GETCMP2(fighter,Health));
+	//gameManager->addComponent<ScoreViewer>();
+	//gameManager->addComponent<GameLogic>(GETCMP2(asteroidsPool, AsteroidsPool),
+		//GETCMP2(bulletsPool, BulletsPool), GETCMP2(fighter, Health), GETCMP2(fighter, Transform));
 #pragma endregion
 
 	game_->getAudioMngr()->playMusic(Resources::March, 1);
+}
+
+void PingPong::createFighter()
+{
+	//Creación del avión
+	Entity* fighter = entityManager_->addEntity();
+	Transform* fighterTr = fighter->addComponent<Transform>();
+	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));
+	fighter->addComponent<Health>(game_->getTextureMngr()->getTexture(Resources::Heart));
+	fighter->addComponent<FighterCtrl>();
+	fighter->addComponent<FighterMotion>(fighterTr);
+	//LINEA PARA DEBUG
+	//cout << "DATOS DEL FIGHTER" << endl; cout << "POS X: " << fighterTr->getPos().getX() << endl; cout << "POS Y: " << fighterTr->getPos().getY() << endl; cout << "VEL X: " << fighterTr->getVel().getX() << endl; cout << "VEL Y: " << fighterTr->getVel().getY() << endl; cout << "WIDTH: " << fighterTr->getW() << endl; cout << "HEIGHT: " << fighterTr->getH() << endl;
+
+	Entity* bulletsPool = entityManager_->addEntity();
+	BulletsPool* pool = bulletsPool->addComponent<BulletsPool>();
+	bulletsPool->addComponent<BulletsViewer>(game_->getTextureMngr()->getTexture(Resources::Bullet));
+	bulletsPool->addComponent<BulletsMotion>(GETCMP2(fighter, Transform));
+	fighter->addComponent<Gun>(pool);
+}
+
+void PingPong::createAsteroids()
+{
+	Entity* asteroidsPool = entityManager_->addEntity();
+	AsteroidsPool* astPool = asteroidsPool->addComponent<AsteroidsPool>();
+	astPool->generateAsteroids(10);	//10 por probar
+	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
+	asteroidsPool->addComponent<AsteroidsMotion>();
 }
 
 #pragma endregion

@@ -31,6 +31,12 @@ public:
 		return rotation_;
 	}
 	void setRot(double angle) {
+		while (angle > 360) {
+			angle -= 360;
+		}
+		while (angle < 0) {
+			angle += 360;
+		}
 		rotation_ = angle;
 	}
 

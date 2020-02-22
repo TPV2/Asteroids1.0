@@ -4,10 +4,12 @@
 #include <SDL_rect.h>
 
 #pragma region const
-const uint PLANE_X = 47;
-const uint PLANE_Y = 90;
-const int PLANE_W = 207;
-const int PLANE_H = 250;
+const uint SPRITESHEET_PLANE_X = 47;
+const uint SPRITESHEET_PLANE_Y = 90;
+const int SPRITESHEET_PLANE_W = 207;
+const int SPRITESHEET_PLANE_H = 250;
+const double GAME_PLANE_W = 41.4;
+const double GAME_PLANE_H = 50;
 #pragma endregion
 
 

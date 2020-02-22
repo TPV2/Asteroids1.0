@@ -33,7 +33,7 @@ void AsteroidsPool::generateAsteroids(int n) {
 			(*it)->setObject(true);	//Lo activa
 			(*it)->setAngle(rnd->nextInt(0, 360));
 			(*it)->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
-			(*it)->setPos({ (double)rnd->nextInt(0, 1920), (double)rnd->nextInt(0, 1080) });
+			(*it)->setPos({ (double)rnd->nextInt(0, 1280), (double)rnd->nextInt(0, 720) });
 			(*it)->setLevel(rnd->nextInt(1, 4));
 			generados++;			//Aumenta el contador de generados
 		}

@@ -21,8 +21,6 @@ void FighterCtrl::init() {
 
 void FighterCtrl::update() {
 	InputHandler* ih = InputHandler::instance();
-	tr_->setPosX(tr_->getPos().getX() + tr_->getVel().getX());
-	tr_->setPosY(tr_->getPos().getY() + tr_->getVel().getY());
 	if (ih->keyDownEvent()) {
 		if (ih->isKeyDown(right_)) {
 			tr_->setRot(tr_->getRot() + ANGLE_VEL);

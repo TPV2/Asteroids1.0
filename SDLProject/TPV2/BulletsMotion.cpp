@@ -13,20 +13,25 @@ void BulletsMotion::update() {
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {
 			Bullet* currBullet = pool_->getPool()[i];
+
+			//Si la bala sale de la pantalla
 			if (currBullet->getPos()->getX() > game_->getWindowWidth() ||
-				currBullet->getPos()->getX() < 0.0 &&
+				currBullet->getPos()->getX() < 0.0 ||
 				currBullet->getPos()->getY() > game_->getWindowHeight() ||
 				currBullet->getPos()->getY() < 0.0) {
-				cout << " La bala " << i << " salio de la pantalla \n";
-				currBullet->setObject(false);
-				currBullet->setVel(0);
+				//DEBUG
+				//cout << " La bala " << i << " salio de la pantalla \n";
+				currBullet->setVel(0);			//Se deja de mover
+				currBullet->setObject(false);	//Se desactiva
 			}
+			
+			//Si no sale de la pantalla
 			else
 			{
-				Vector2D currSpeed = { currBullet->getPos()->getX() + currBullet->getDir()->getX() * currBullet->getVel() ,
+				Vector2D currPos = { currBullet->getPos()->getX() + currBullet->getDir()->getX() * currBullet->getVel() ,
 				currBullet->getPos()->getY() + currBullet->getDir()->getY() * currBullet->getVel() };
-				cout << currSpeed << endl;
-				currBullet->setPos(currSpeed);
+
+				currBullet->setPos(currPos);
 			}
 			currBullet = nullptr;
 		}
