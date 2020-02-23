@@ -2,8 +2,6 @@
 #include "SRandBasedGenerator.h"
 #include "BulletsPool.h"
 
-const double ASTEROID_MIN_VEL = 2.0;
-const double ASTEROID_MAX_VEL = 4.0;
 
 AsteroidsPool::AsteroidsPool() :
 	Component(ecs::AsteroidsPool),
@@ -27,15 +25,20 @@ void AsteroidsPool::onCollision(/*Bullet* b, Asteroid* a*/) {
 void AsteroidsPool::generateAsteroids(int n) {
 	SRandBasedGenerator* rnd = new SRandBasedGenerator();
 	auto it = astPool.getPool().begin();
-	int generados = 0;
-	while (generados < n) {
+	while (asteroidsActive < n) {
 		if (!(*it)->isUsed()) {		//Si el asteroide al que apunta it esta desactivado
-			(*it)->setObject(true);	//Lo activa
-			(*it)->setAngle(rnd->nextInt(0, 360));
-			(*it)->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
-			(*it)->setPos({ (double)rnd->nextInt(0, 1280), (double)rnd->nextInt(0, 720) });
-			(*it)->setLevel(rnd->nextInt(1, 4));
-			generados++;			//Aumenta el contador de generados
+			//POS, DIR, VEL, ANGLE, LEVEL
+			Vector2D pos = { (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) };
+			Vector2D dir = { (double)rnd->nextInt(-101, 101) / 100.0, (double)rnd->nextInt(-101, 101) / 100.0 };
+			cout << "LA POSICION DEL METEORITO " << asteroidsActive + 1 << " ES {" << pos.getX() << ", " << pos.getY() << "}" << endl;
+			cout << "LA DIRECCION DEL METEORITO " << asteroidsActive + 1 << " ES {" << dir.getX() << ", " << dir.getY() << "}" << endl;
+			(*it)->startAsteroid(
+				pos,	//POS
+				dir,													//DIR
+				(rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100)) / 100.0,										//VEL (Solucion guarra a que no se generen double aleatorios)
+				rnd->nextInt(0, 360),																						//ANGLE
+				rnd->nextInt(1, 4));																						//LEVEL
+			asteroidsActive++;			//Aumenta el contador de generados
 		}
 		++it;	//El iterador aumenta siempre
 	}

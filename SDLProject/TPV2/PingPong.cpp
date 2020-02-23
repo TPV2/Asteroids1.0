@@ -118,7 +118,7 @@ void PingPong::render() {
 void PingPong::createEntities() {
 
 	createFighter();
-	//createAsteroids();
+	createAsteroids();
 
 
 	//Pendiente gameLogic
@@ -160,6 +160,8 @@ void PingPong::createAsteroids()
 	astPool->generateAsteroids(10);	//10 por probar
 	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
 	asteroidsPool->addComponent<AsteroidsMotion>();
+
+	cout << "Hay " << astPool->getNumOfAsteroids() << " asteroides" << endl;
 }
 
 #pragma endregion

@@ -13,14 +13,35 @@ void AsteroidsViewer::draw() {
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {
 			SDL_Rect rect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY(),
-				pool_->getPool()[i]->getScale()->getX() * pool_->getPool()[i]->getLevel(),							//De momento para cambiar los tamaños, multiplico el nivel por la escala,
-				pool_->getPool()[i]->getScale()->getY() * pool_->getPool()[i]->getLevel());							//Hay que preguntar al profe si se hace así
+				pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());	
 			texture_->render(rect);
-			/*system("cls");
-			cout << "Bala " << i << " " << pool_->getPool()[i]->isUsed() <<
-				" pos " << *pool_->getPool()[i]->getPos() <<
-				" vel " << *pool_->getPool()[i]->getVel() <<
-				endl;*/
+
+			//HAY QUE RENDERIZAR UNA COPIAS SI:
+			//SE SALE POR EL LADO IZQUIERDO
+			if (pool_->getPool()[i]->getPos()->getX() < 0) {
+				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() + game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
+					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
+				texture_->render(copyRect);
+			}
+			//SE SALE POR EL LADO DERECHO
+			if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) {
+				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() - game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
+					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
+				texture_->render(copyRect);
+			}
+			//SE SALE ARRIBA
+			if (pool_->getPool()[i]->getPos()->getY() < 0) {
+				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY() + game_->getWindowHeight(),
+					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
+				texture_->render(copyRect);
+			}
+			//SE SALE ABAJO
+			if (pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight()) {
+				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY() - game_->getWindowHeight(),
+					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
+				texture_->render(copyRect);
+			}
+			//SE SALE POR UNA ESQUINA (FALTA Y ES IMPORTANTE)
 		}
 	}
 }
