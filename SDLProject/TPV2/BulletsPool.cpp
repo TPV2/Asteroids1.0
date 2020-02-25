@@ -4,8 +4,6 @@ BulletsPool::BulletsPool() :
 	Component(ecs::BulletsPool),
 	obPool(nullptr){}//Bullet::isUsed?
 
-void BulletsPool::init() {
-}
 
 void BulletsPool::disablAll() {
 	for (auto it = obPool.getPool().begin(); it != obPool.getPool().end(); ++it) {
@@ -14,8 +12,8 @@ void BulletsPool::disablAll() {
 }
 
 //TODO:: A falta de la implementación de los asteroides
-void BulletsPool::onCollision(/*Bullet* b, Asteroid* a*/) {
-
+void BulletsPool::onCollision(Bullet* b/*, Asteroid* a*/) {
+	b->setObject(false);
 }
 
 //Busca un bullet no usado en el pool, si lo encuentra lo activa

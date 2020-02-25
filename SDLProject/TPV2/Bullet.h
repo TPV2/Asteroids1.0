@@ -20,7 +20,6 @@ private:
 	Vector2D dir_;
 	double angle_;
 	bool used_ = false;
-	//Texture* texture_ = nullptr; //No sé como poner la textura desde aquí
 public:
 	Bullet(Vector2D pos, Vector2D scale, double angle) :
 		pos_(pos), scale_(scale), vel_(BULLET_VEL), angle_(angle) {}

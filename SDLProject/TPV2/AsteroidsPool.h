@@ -7,6 +7,8 @@
 const uint ASTEROID_NUM = 30;
 #pragma endregion
 
+class Bullet;
+
 class AsteroidsPool : public Component
 {
 private:
@@ -16,7 +18,7 @@ public:
 	void init() override;
 	void generateAsteroids(int n);
 	void disablAll();
-	void onCollision();
+	void onCollision(Bullet* b, Asteroid* a);
 	vector<Asteroid*> getPool() { return astPool.getPool(); };
 };
 

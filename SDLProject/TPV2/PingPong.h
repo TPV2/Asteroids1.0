@@ -24,11 +24,8 @@ private:
 
 #pragma region implementación
 	void createEntities();
-	void createFighter();	//También crea el pool de balas
-	void createAsteroids();
 
 #pragma endregion
-
 
 	SDLGame* game_;
 	EntityManager* entityManager_;

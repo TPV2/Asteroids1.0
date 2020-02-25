@@ -20,7 +20,7 @@ void Health::draw() {
 }
 
 void Health::removeLives(int amount) {
-	if (amount >= lives_) {
+	if (amount <= lives_) {
 		lives_ -= amount;
 	}
 	else

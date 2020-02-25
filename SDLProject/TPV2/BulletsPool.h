@@ -15,10 +15,9 @@ private:
 	ObjectPool<Bullet, BULLET_NUM> obPool;
 public:
 	BulletsPool();
-	void init() override;
 	void shoot(Vector2D pos, Vector2D vel, double w, double h);
 	void disablAll();
-	void onCollision();
+	void onCollision(Bullet* b/*, Asteroid* a*/);
 	vector<Bullet*> getPool() { return obPool.getPool(); };
 };
 

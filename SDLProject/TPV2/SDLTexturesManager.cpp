@@ -16,9 +16,7 @@ SDLTexturesManager::~SDLTexturesManager() {
 		if (pair.second != nullptr)
 			delete pair.second;
 	}
-
 	IMG_Quit();
-
 }
 
 bool SDLTexturesManager::init() {

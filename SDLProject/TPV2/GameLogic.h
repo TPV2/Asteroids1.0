@@ -15,7 +15,6 @@ private:
 	Health* health_;
 	ScoreManager* scoreManager_;
 public:
-	//AsteroidsPool, BulletsPool, Health y Transform
 	GameLogic(Transform* fighterTR, BulletsPool* bulletPool, AsteroidsPool* astPool, Health* health);
 	virtual ~GameLogic();
 	void init() override;

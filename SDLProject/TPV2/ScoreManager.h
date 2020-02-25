@@ -11,6 +11,7 @@ private:
 public:
 	ScoreManager() : Component(ecs::ScoreManager), running_(false), score_(0),gameOver_(false) {}
 	~ScoreManager() {};
+	
 #pragma region getters
 	const int getScore() { return score_; };
 	bool isRunning() const { return running_; };

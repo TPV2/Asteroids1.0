@@ -41,6 +41,16 @@ public:
 		return objsPtrs_;
 	}
 
+	bool isEmphy() {
+		bool usedFound = false;
+		int count = 0;
+		while (count < SIZE && !usedFound)
+		{
+			usedFound = objsPtrs_.at(count)->isUsed();
+		}
+		return usedFound;
+	}
+
 private:
 	std::function<bool(T*)> inUseF_;
 	std::array<T, SIZE> objs_;

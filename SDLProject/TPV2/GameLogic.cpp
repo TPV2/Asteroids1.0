@@ -2,6 +2,7 @@
 #include "Collisions.h"
 #include "Resources.h"
 #include "Entity.h"
+#include "Collisions.h"
 
 GameLogic::GameLogic(Transform* fighterTR, BulletsPool* bulletPool,
 	AsteroidsPool* astPool, Health* health) :
@@ -21,39 +22,34 @@ void GameLogic::init() {
 }
 
 void GameLogic::update() {
-	// check for collision of ball with paddles
-	if (scoreManager_->isRunning()) {//TODOs
+	if (scoreManager_->isRunning()) {
+		for (int i = 0; i < astPool_->getPool().size(); i++) {
+			Asteroid* currAst = astPool_->getPool()[i];
+			if (currAst->isUsed()) {
+				if (Collisions::collidesWithRotation(*currAst->getPos(), currAst->getScale()->getX(), currAst->getScale()->getY(), currAst->getAngle(),
+					fighterTR_->getPos(), fighterTR_->getW(), fighterTR_->getH(), fighterTR_->getRot())) {
 
+					fighterTR_->setPos(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2);
+					scoreManager_->setRunning(false);
+					health_->removeLives(1);
+				}
+				else
+				{
+					for (int j = 0; j < bullerPool_->getPool().size(); j++) {
+						Bullet* currBullet = bullerPool_->getPool()[j];
+
+						if (Collisions::collidesWithRotation(*currAst->getPos(), currAst->getScale()->getX(), currAst->getScale()->getY(), currAst->getAngle(),
+							*currBullet->getPos(), currBullet->getScale()->getX(), currBullet->getScale()->getY(), currBullet->getAngle())) {
+							bullerPool_->onCollision(currBullet);
+							astPool_->onCollision(currBullet, currAst);
+							scoreManager_->setScore(10);//es prueba
+						}
+					}
+				}
+			}
+
+
+		}
 	}
-	/*if (Collisions::collides(ballTR_->getPos(), ballTR_->getW(),
-			ballTR_->getH(), leftPaddleTR_->getPos(), leftPaddleTR_->getW(),
-			leftPaddleTR_->getH())
-			|| Collisions::collides(ballTR_->getPos(), ballTR_->getW(),
-					ballTR_->getH(), rightPaddleTR_->getPos(),
-					rightPaddleTR_->getW(), rightPaddleTR_->getH())) {
-		Vector2D v = ballTR_->getVel();
-		v.setX(-v.getX());
-		ballTR_->setVel(v * 1.2);
-		game_->getAudioMngr()->playChannel(Resources::Paddle_Hit, 0);
-	}
-
-	// check if the back exit from sides
-	if (ballTR_->getPos().getX() <= 0) {
-		//scoreManager_->setRightScore(scoreManager_->getRightScore() + 1);
-		scoreManager_->setRunning(false);
-		ballTR_->setVel(Vector2D(0, 0));
-		ballTR_->setPos(
-				Vector2D(game_->getWindowWidth() / 2 - 6,
-						game_->getWindowHeight() / 2 - 6));
-
-	} else if (ballTR_->getPos().getX() + ballTR_->getW()
-			>= game_->getWindowWidth()) {
-		//scoreManager_->setLeftScore(scoreManager_->getLeftScore() + 1);
-		scoreManager_->setRunning(false);
-		ballTR_->setPos(
-				Vector2D(game_->getWindowWidth() / 2 - 6,
-						game_->getWindowHeight() / 2 - 6));
-		ballTR_->setVel(Vector2D(0, 0));
-	}*/
 }
 
