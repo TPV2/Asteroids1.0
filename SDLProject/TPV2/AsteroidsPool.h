@@ -16,7 +16,6 @@ private:
 	int asteroidsActive = 0;
 public:
 	AsteroidsPool();
-	void init() override;
 	void generateAsteroids(int n);
 	void disablAll();
 	void onCollision(Bullet* b, Asteroid* a);

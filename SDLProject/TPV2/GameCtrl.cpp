@@ -1,6 +1,7 @@
 #include "GameCtrl.h"
 #include "Entity.h"
 #include "InputHandler.h"
+#include "SDL_macros.h"
 
 GameCtrl::~GameCtrl() {
 }
@@ -19,11 +20,17 @@ void GameCtrl::update() {
 		}
 	}
 	if (health_->getLives() < 0) {
-		scoreManager_->setScore(0);
+
+		scoreManager_->resetScore();
 		health_->resetLives();
 		scoreManager_->gameOver();
 		scoreManager_->setRunning(false);
 	}
+	//TODO
+	/*if (astPool_->getNumOfAsteroids() == 0) {
+		scoreManager_->setRunning(false);
+		scoreManager_->gameOver();
+	}*/
 
 }
 
@@ -36,9 +43,8 @@ void GameCtrl::draw() {
 				game_->getWindowWidth() / 2 - hitanykey->getWidth() / 2,
 				game_->getWindowHeight() - hitanykey->getHeight() - 50);
 	}
-
 	// game over message when game is over
-	if (scoreManager_->isGameOver()) {
+	else if(scoreManager_->isGameOver()) {
 		Texture *gameOver = game_->getTextureMngr()->getTexture(
 				Resources::GameOver);
 		gameOver->render(game_->getWindowWidth() / 2 - gameOver->getWidth() / 2,

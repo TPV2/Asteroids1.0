@@ -18,7 +18,7 @@
 
 #include "SDL_macros.h"
 
-#pragma region includesImplementaci�n
+#pragma region includesImplementacion
 #include "FighterViewer.h"
 #include "FighterCtrl.h"
 #include "FighterMotion.h"
@@ -142,7 +142,3 @@ void PingPong::createEntities() {
 	
 	game_->getAudioMngr()->playMusic(Resources::March, 1);
 }
-
-
-
-

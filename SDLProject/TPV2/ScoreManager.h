@@ -18,7 +18,8 @@ public:
 	bool isGameOver() const { return gameOver_; };
 #pragma endregion
 #pragma region setters
-	void setScore(int value) { score_ = value; };
+	void addScore(int value) { score_ += value; };
+	void resetScore() { score_ = 0; };
 	void setRunning(bool running) { running_ = running; };
 	void gameOver() { gameOver_ = false; };
 #pragma endregion

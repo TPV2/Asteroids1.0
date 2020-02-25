@@ -2,17 +2,12 @@
 #include "SRandBasedGenerator.h"
 #include "BulletsPool.h"
 
-const double ASTEROID_MIN_VEL = 2.0;
-const double ASTEROID_MAX_VEL = 4.0;
-const int ASTEROIDS_NUM = 10;
+
 
 AsteroidsPool::AsteroidsPool() :
 	Component(ecs::AsteroidsPool),
 	astPool(nullptr) {}			//Asteroid::isUsed?
 
-void AsteroidsPool::init() {
-	//generateAsteroids(ASTEROIDS_NUM);
-}
 
 void AsteroidsPool::disablAll() {
 	if (astPool.isEmphy()) {
