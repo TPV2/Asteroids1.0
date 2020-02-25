@@ -18,7 +18,7 @@
 
 #include "SDL_macros.h"
 
-#pragma region includesImplementación
+#pragma region includesImplementaciï¿½n
 #include "FighterViewer.h"
 #include "FighterCtrl.h"
 #include "FighterMotion.h"

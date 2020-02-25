@@ -9,26 +9,20 @@ void AsteroidsMotion::init() {
 
 //Comprueba si un bullet está siendo usado, si es así, modifica la velocidad y posición
 void AsteroidsMotion::update() {
-
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {
-			Asteroid* currAsteroid = pool_->getPool()[i];
-			if (currAsteroid->getPos()->getX() > game_->getWindowWidth() ||
-				currAsteroid->getPos()->getX() < 0.0 &&
-				currAsteroid->getPos()->getY() > game_->getWindowHeight() ||
-				currAsteroid->getPos()->getY() < 0.0) {
-				cout << " El Asteroide " << i << " salio de la pantalla \n";
-				currAsteroid->setObject(false);
-				currAsteroid->setVel(0);
-			}
-			else
-			{
-				Vector2D currSpeed = { currAsteroid->getPos()->getX() + currAsteroid->getDir()->getX() * currAsteroid->getVel() ,
-				currAsteroid->getPos()->getY() + currAsteroid->getDir()->getY() * currAsteroid->getVel() };
-				cout << currSpeed << endl;
-				currAsteroid->setPos(currSpeed);
-			}
-			currAsteroid = nullptr;
+			pool_->getPool()[i]->setAngle(pool_->getPool()[i]->getAngle() + 15);
+			pool_->getPool()[i]->setPos(
+				{ pool_->getPool()[i]->getPos()->getX() + pool_->getPool()[i]->getDir()->getX() * pool_->getPool()[i]->getVel(),
+				pool_->getPool()[i]->getPos()->getY() + pool_->getPool()[i]->getDir()->getY() * pool_->getPool()[i]->getVel() }
+			);
 		}
+		//Si sale de la pantalla
+		if (pool_->getPool()[i]->getPos()->getX() < -pool_->getPool()[i]->getW()) pool_->getPool()[i]->setPos({ (double)game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY() });			//Izquierda
+		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) pool_->getPool()[i]->setPos({ 0, pool_->getPool()[i]->getPos()->getY() });	//Derecha
+
+		if (pool_->getPool()[i]->getPos()->getY() < -pool_->getPool()[i]->getH()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), (double)game_->getWindowHeight() });		//Arriba
+		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowHeight()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), 0 });	//Abajo
 	}
+	//cout << "NO ME DA LA GANA PUTO MOVERME" << endl;	//DEBUG
 }

@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 ﻿G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(162,5): warning MSB4011: "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "G:\2do\2doCuatrimestre\TPV2\practicas\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (161,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
+=======
+﻿C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj(162,5): warning MSB4011: "C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\SDLProject.props" no se puede volver a importar. Ya se importó en "C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\TPV2\TPV2.vcxproj (161,5)". Lo más probable es que se trate de un error al crear la compilación. Se omitirá esta importación. 
+  AsteroidsMotion.cpp
+C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\TPV2\Asteroid.h(41,12): warning C4244:  '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\TPV2\AsteroidsMotion.cpp(12,20): warning C4018:  '<': no coinciden signed/unsigned
+  TPV2.vcxproj -> C:\Users\Oskar\Desktop\Asteroids1.0\SDLProject\bin\TPV2Debug.exe
+>>>>>>> master

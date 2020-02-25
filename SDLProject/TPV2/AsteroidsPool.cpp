@@ -22,10 +22,10 @@ void AsteroidsPool::disablAll() {
 	}
 }
 
-//TODO:: A falta de la implementación de los asteroides
-/*se llama a este método cuando un asteroide
-choca con una bala. Lo que tiene que hacer es dividir el asteroide a en 2 (ver el apéndice
-para más detalles).*/
+//TODO:: A falta de la implementaciï¿½n de los asteroides
+/*se llama a este mï¿½todo cuando un asteroide
+choca con una bala. Lo que tiene que hacer es dividir el asteroide a en 2 (ver el apï¿½ndice
+para mï¿½s detalles).*/
 void AsteroidsPool::onCollision(Bullet* b, Asteroid* a) {
 	auto vec = getPool();
 	if (a->getLevel() > 0) {
