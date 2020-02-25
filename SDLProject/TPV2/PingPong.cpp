@@ -129,8 +129,7 @@ void PingPong::createEntities() {
 	fighter->addComponent<Gun>(GETCMP2(bulletsPool, BulletsPool));
 
 	Entity* asteroidsPool = entityManager_->addEntity();
-	AsteroidsPool * astpool = asteroidsPool->addComponent<AsteroidsPool>();
-	astpool->generateAsteroids(10);
+	asteroidsPool->addComponent<AsteroidsPool>();
 	asteroidsPool->addComponent<AsteroidsViewer>(game_->getTextureMngr()->getTexture(Resources::Asteroid));
 	asteroidsPool->addComponent<AsteroidsMotion>();
 

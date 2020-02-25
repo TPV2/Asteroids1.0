@@ -14,7 +14,7 @@ SDLTexturesManager::~SDLTexturesManager() {
 	// free all textures
 	for (const auto &pair : textures_) {
 		if (pair.second != nullptr)
-			delete pair.second;
+			delete pair.second;//TODO
 	}
 	IMG_Quit();
 }

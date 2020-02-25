@@ -12,7 +12,7 @@ private:
 public:
 	BulletsViewer(Texture* texture) :
 		Component(ecs::BulletsViewer), texture_(texture), pool_(nullptr) {}
-	~BulletsViewer() { delete texture_; pool_ = nullptr; };
+	~BulletsViewer() { pool_ = nullptr; };
 	void init()override;
 	void draw()override;
 };

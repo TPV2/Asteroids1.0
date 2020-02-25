@@ -13,7 +13,7 @@ void GameCtrl::init() {
 
 void GameCtrl::update() {
 
-	if (!scoreManager_->isRunning()) {
+	if (!scoreManager_->isGameOver() && !scoreManager_->isRunning()) {
 		if (InputHandler::instance()->keyDownEvent()) {
 			astPool_->generateAsteroids(ASTEROIDS_NUM);
 			scoreManager_->setRunning(true);
@@ -26,12 +26,11 @@ void GameCtrl::update() {
 		scoreManager_->gameOver();
 		scoreManager_->setRunning(false);
 	}
-	//TODO
-	/*if (astPool_->getNumOfAsteroids() == 0) {
+	if (scoreManager_->isRunning() && astPool_->getNumOfAsteroids() == 0) {
 		scoreManager_->setRunning(false);
 		scoreManager_->gameOver();
-	}*/
-
+		scoreManager_->setWin(true);
+	}
 }
 
 void GameCtrl::draw() {
@@ -42,12 +41,5 @@ void GameCtrl::draw() {
 		hitanykey->render(
 				game_->getWindowWidth() / 2 - hitanykey->getWidth() / 2,
 				game_->getWindowHeight() - hitanykey->getHeight() - 50);
-	}
-	// game over message when game is over
-	else if(scoreManager_->isGameOver()) {
-		Texture *gameOver = game_->getTextureMngr()->getTexture(
-				Resources::GameOver);
-		gameOver->render(game_->getWindowWidth() / 2 - gameOver->getWidth() / 2,
-				game_->getWindowHeight() - gameOver->getHeight() - 150);
 	}
 }

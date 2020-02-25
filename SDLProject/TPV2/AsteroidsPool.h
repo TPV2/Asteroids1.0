@@ -5,6 +5,8 @@
 
 #pragma region Constantes
 const uint ASTEROID_NUM = 30;
+const int SAFE_ZONE_W = 200;
+const int SAFE_ZONE_H = 150;
 #pragma endregion
 
 class Bullet;
@@ -18,8 +20,9 @@ public:
 	AsteroidsPool();
 	void generateAsteroids(int n);
 	void disablAll();
-	void onCollision(Bullet* b, Asteroid* a);
+	void onCollision( Asteroid* a);
 	const int getNumOfAsteroids() { return asteroidsActive; };
 	vector<Asteroid*> getPool() { return astPool.getPool(); };
+	bool validPosition(const Vector2D& astPos);
 };
 

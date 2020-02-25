@@ -3,9 +3,9 @@
 #include "Transform.h"
 
 #pragma region consts
-const uint ANGLE_VEL = 5;
-const uint IMPULSE = 10;
-const double DECREASE_VEL = 0.96;
+const uint ANGLE_VEL = 12;
+const uint IMPULSE = 5;
+const double DECREASE_VEL = 0.98;
 #pragma endregion
 
 

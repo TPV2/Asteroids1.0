@@ -4,7 +4,7 @@ Health::Health(Texture* texture) :
 	Component(ecs::Health), texture_(texture) {}
 
 Health::~Health() {
-	delete texture_, destRect_;
+	delete destRect_;
 }
 
 void Health::init() {

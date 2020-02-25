@@ -27,6 +27,7 @@ public:
 		// text
 		HelloWorld,
 		PressAnyKey,
+		Win,
 		GameOver,
 	};
 

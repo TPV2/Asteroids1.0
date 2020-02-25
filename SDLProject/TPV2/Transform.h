@@ -77,6 +77,7 @@ public:
 		height_ = height;
 	}
 
+
 private:
 	Vector2D position_;
 	Vector2D velocity_;

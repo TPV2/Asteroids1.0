@@ -31,8 +31,7 @@ private:
 	EntityManager* entityManager_;
 	bool exit_;
 
-	//JUEGO CONFIGURADO EN HD
-	const static int _WINDOW_WIDTH_ = 800; //1280 / 1.5; //640;
-	const static int _WINDOW_HEIGHT_ = 600; //1024 / 1.5;// 480;
+	const static int _WINDOW_WIDTH_ = 800;
+	const static int _WINDOW_HEIGHT_ = 600;
 
 };

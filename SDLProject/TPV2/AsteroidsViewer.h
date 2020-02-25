@@ -12,7 +12,7 @@ private:
 public:
 	AsteroidsViewer(Texture* texture) :
 		Component(ecs::AsteroidsViewer), texture_(texture), pool_(nullptr) {}
-	~AsteroidsViewer() { delete texture_; pool_ = nullptr; };
+	~AsteroidsViewer() {  pool_ = nullptr; };
 	void init()override;
 	void draw()override;
 };

@@ -13,7 +13,7 @@ FighterViewer::FighterViewer(Texture* texture) :
 }
 
 FighterViewer::~FighterViewer() {
-	delete texture_;
+	
 }
 
 //Inicializa el render del avión con los datos dados por el enunciado

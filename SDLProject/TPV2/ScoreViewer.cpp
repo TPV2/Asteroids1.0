@@ -19,9 +19,27 @@ void ScoreViewer::init() {
 void ScoreViewer::draw() {
 
 	Texture score(game_->getRenderer(),
-			to_string(scoreManager_->getScore()),
+			("SCORE: " + to_string(scoreManager_->getScore())),
 			game_->getFontMngr()->getFont(Resources::ARIAL24),
 			{ COLOR(0x111122ff) });
 
 	score.render(game_->getWindowWidth() / 2 - score.getWidth() / 2, 10);
+
+	if (scoreManager_->isGameOver()) {
+		//Has ganado
+		if (scoreManager_->isWin()) {
+			Texture* gameOver = game_->getTextureMngr()->getTexture(
+				Resources::Win);
+			gameOver->render(game_->getWindowWidth() / 2 - gameOver->getWidth() / 2,
+				game_->getWindowHeight() - gameOver->getHeight() - 150);
+		}
+		else
+		{
+			Texture* gameOver = game_->getTextureMngr()->getTexture(
+				Resources::GameOver);
+			gameOver->render(game_->getWindowWidth() / 2 - gameOver->getWidth() / 2,
+				game_->getWindowHeight() - gameOver->getHeight() - 150);
+		}
+
+	}
 }

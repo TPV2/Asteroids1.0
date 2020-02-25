@@ -6,7 +6,7 @@
 
 AsteroidsPool::AsteroidsPool() :
 	Component(ecs::AsteroidsPool),
-	astPool(nullptr) {}			//Asteroid::isUsed?
+	astPool([](Asteroid* a) {return a->isUsed(); }) {};
 
 
 void AsteroidsPool::disablAll() {
@@ -15,26 +15,78 @@ void AsteroidsPool::disablAll() {
 			astPool.getPool()[i]->setObject(false);
 		}
 	}
+	asteroidsActive = 0;
 }
 
 //TODO:: A falta de la implementaci�n de los asteroides
 /*se llama a este m�todo cuando un asteroide
 choca con una bala. Lo que tiene que hacer es dividir el asteroide a en 2 (ver el ap�ndice
 para m�s detalles).*/
-void AsteroidsPool::onCollision(Bullet* b, Asteroid* a) {
-	auto vec = getPool();
-	if (a->getLevel() > 0) {
-		a->setObject(false);
-		//Vector2D v = vel.rotate(i * 45);
-		//Vector2D p = p.pos + v.normalize()
+void AsteroidsPool::onCollision( Asteroid* a) {
+	a->setLevel(a->getLevel() - 1);
+	auto pool = getPool();     //astPool.getPool()
+	if (a->getLevel() >= 1) {
+		SRandBasedGenerator* rnd = new SRandBasedGenerator();
+		Asteroid* ast1 = astPool.getObj();
+		Vector2D dir1 = { (double)rnd->nextInt(-100, 101) / 100.0, (double)rnd->nextInt(-100, 101) / 100.0 };
+		double vel1 = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100) / 100.0;
+		double angle1 = rnd->nextInt(0, 360);
+		ast1->startAsteroid( *a->getPos(), dir1, vel1, angle1, a->getLevel());
+
+		Asteroid* ast2 = astPool.getObj();
+		Vector2D dir2 = { (double)rnd->nextInt(-100, 101) / 100.0, (double)rnd->nextInt(-100, 101) / 100.0 };
+		double vel2 = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100) / 100.0;
+		double angle2 = rnd->nextInt(0, 360);
+		ast2->startAsteroid(*a->getPos(), dir2, vel2, angle2, a->getLevel());
+		asteroidsActive += 2;
 	}
-	else
-	{
-		delete a;
+	a->setObject(false);
+	asteroidsActive--;
+	cout << "ASTEROIDES ACTIVOS: " << asteroidsActive << endl;
+}
+
+
+//FUNCION DE PRUEBA
+void AsteroidsPool::generateAsteroids(int n) {
+	SRandBasedGenerator* rnd = new SRandBasedGenerator();
+	for (int i = 0; i < n; i++) {
+		Asteroid* currAsteroid = astPool.getPool()[i];
+		Vector2D pos = { (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) };
+		while (!validPosition(pos)) pos = { (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) };
+		Vector2D dir = { (double)rnd->nextInt(-100, 101) / 100.0, (double)rnd->nextInt(-100, 101) / 100.0 };
+		double vel = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100) / 100.0;
+		double level = rnd->nextInt(1, 4);
+		double angle = rnd->nextInt(0, 360);
+		currAsteroid->startAsteroid(pos, dir, vel, angle, level);
+		asteroidsActive++;
 	}
 }
 
-//FUNCION DE PRUEBA
+bool AsteroidsPool::validPosition(const Vector2D& astPos) {
+	if ((astPos.getX() > game_->getWindowWidth()/2 - SAFE_ZONE_W && astPos.getX() < game_->getWindowWidth()/2 + SAFE_ZONE_W) &&
+		(astPos.getY() > game_->getWindowHeight()/2 - SAFE_ZONE_H && astPos.getY() < game_->getWindowHeight()/2 + SAFE_ZONE_H)){
+		return false;
+	}
+	else return true;
+}
+//FUNCION BUENA
+/*
+
+void AsteroidsPool::generateAsteroids(int n) {
+	SRandBasedGenerator* rnd = new SRandBasedGenerator();
+	for (int i = 0; i < n; i++) {
+		Asteroid* currAsteroid = astPool.getPool()[i];
+		Vector2D pos = { (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) };
+		Vector2D dir = { (double)rnd->nextInt(-100, 101) / 100.0, (double)rnd->nextInt(-100, 101) / 100.0 };
+		double vel = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100)/ 100.0;
+		double level = rnd->nextInt(1, 4);
+		double angle = rnd->nextInt(0, 360);
+		currAsteroid->startAsteroid(pos,dir,vel,angle,level);
+		asteroidsActive++;
+	}
+}
+//Busca un bullet no usado en el pool, si lo encuentra lo activa
+
 void AsteroidsPool::generateAsteroids(int n) {
 	SRandBasedGenerator* rnd = new SRandBasedGenerator();
 	astPool.getPool()[1]->isUsed();
@@ -45,19 +97,14 @@ void AsteroidsPool::generateAsteroids(int n) {
 	astPool.getPool()[1]->setLevel(rnd->nextInt(1, 4));
 	astPool.getPool()[1]->startAsteroid({ 400, -50 }, { 0,0 }, 0, 0, 3);
 }
-//FUNCION BUENA
-/*
-//Busca un bullet no usado en el pool, si lo encuentra lo activa
+//FUNCION DE PRUEBA
 void AsteroidsPool::generateAsteroids(int n) {
 	SRandBasedGenerator* rnd = new SRandBasedGenerator();
-	for (int i = 0; i < n; i++) {
-		astPool.getPool()[i]->isUsed();
-		astPool.getPool()[i]->setObject(true);
-		astPool.getPool()[i]->setAngle(rnd->nextInt(0, 360));
-		astPool.getPool()[i]->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
-		astPool.getPool()[i]->setDir({ (double)rnd->nextInt(-100, 101) / 100, (double)rnd->nextInt(-100, 101) / 100 });
-		astPool.getPool()[i]->setPos({ (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) });
-		astPool.getPool()[i]->setLevel(rnd->nextInt(1, 4));
-	}
+	astPool.getPool()[1]->isUsed();
+	astPool.getPool()[1]->setObject(true);
+	astPool.getPool()[1]->setAngle(rnd->nextInt(0, 360));
+	astPool.getPool()[1]->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
+	astPool.getPool()[1]->setLevel(rnd->nextInt(1, 4));
+	astPool.getPool()[1]->startAsteroid({ 770, 480 }, { 0,0 }, 0, 0, 3);
 }
 */

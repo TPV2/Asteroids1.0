@@ -12,7 +12,7 @@ void BulletsPool::disablAll() {
 }
 
 //TODO:: A falta de la implementación de los asteroides
-void BulletsPool::onCollision(Bullet* b/*, Asteroid* a*/) {
+void BulletsPool::onCollision(Bullet* b) {
 	b->setObject(false);
 }
 

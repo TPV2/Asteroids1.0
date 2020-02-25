@@ -15,14 +15,15 @@ void AsteroidsViewer::draw() {
 			SDL_Rect rect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY(),
 				pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());	
 			texture_->render(rect);
-
+			/*
 			//HAY QUE RENDERIZAR UNA COPIAS SI:
 			//SE SALE POR EL LADO IZQUIERDO O POR EL DERECHO
-			if (pool_->getPool()[i]->getPos()->getX() < - pool_->getPool()[i]->getW()) {
+			if (pool_->getPool()[i]->getPos()->getX() < 0) {
 				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() + game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
 					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
 				texture_->render(copyRect);
-			} else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) {
+			} 
+			else if (pool_->getPool()[i]->getPos()->getX() + pool_->getPool()[i]->getW() > game_->getWindowWidth()) {
 				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() - game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
 					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
 				texture_->render(copyRect);
@@ -55,7 +56,7 @@ void AsteroidsViewer::draw() {
 			//ARRIBA-IZQUIERDA
 			else if ((pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) && pool_->getPool()[i]->getPos()->getY() < pool_->getPool()[i]->getH()) {
 
-			}
+			}*/
 		}
 	}
 }

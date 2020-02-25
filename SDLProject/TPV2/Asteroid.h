@@ -23,6 +23,7 @@ private:
 	double angle_;	
 	int level_ = 1;		// 1-3 (pequeño-grande), 0 es destruido
 	bool used_ = false;
+	int points_ = 10;
 
 public:
 	Asteroid(Vector2D pos, Vector2D dir, double vel, double angle, int level) :
@@ -42,7 +43,7 @@ public:
 		w_ = ASTEROID_W + ASTEROID_DIFERENCE * level;
 		h_ = ASTEROID_H + ASTEROID_DIFERENCE * level;
 		used_ = true;
-		cout << "ASTEROIDE: LVL: " << level << ", VEL: " << vel << ", ANG: " << angle << endl;
+		cout << "ASTEROIDE: " << "POS{" << pos.getX() << "," << pos.getY() << "} LVL: " << level << ", VEL: " << vel << ", ANG: " << angle << endl;
 	}
 
 #pragma region getters
@@ -53,8 +54,10 @@ public:
 	const double getH() { return h_; };
 	const double getAngle() { return angle_; };
 	const int getLevel() { return level_; };
+	const int getPoints() { return points_; };
 #pragma endregion
 #pragma region setters
+	void setPoints(int value) { points_ = value; };
 	void setPos(Vector2D pos) { pos_ = pos; };
 	void setDir(Vector2D dir) { dir_ = dir; };
 	void setVel(double vel) { vel_ = vel; };

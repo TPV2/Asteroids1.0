@@ -19,12 +19,9 @@ void BulletsMotion::update() {
 				currBullet->getPos()->getX() < 0.0 ||
 				currBullet->getPos()->getY() > game_->getWindowHeight() ||
 				currBullet->getPos()->getY() < 0.0) {
-				//DEBUG
-				//cout << " La bala " << i << " salio de la pantalla \n";
 				currBullet->setVel(0);			//Se deja de mover
 				currBullet->setObject(false);	//Se desactiva
 			}
-			
 			//Si no sale de la pantalla
 			else
 			{

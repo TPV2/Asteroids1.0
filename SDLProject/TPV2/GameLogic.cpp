@@ -29,8 +29,10 @@ void GameLogic::update() {
 				//Comprobación con el avión
 				if (Collisions::collidesWithRotation(*currAst->getPos(), currAst->getW(), currAst->getH(), currAst->getAngle(),
 					fighterTR_->getPos(), fighterTR_->getW(), fighterTR_->getH(), fighterTR_->getRot())) {
-
-					fighterTR_->setPos(game_->getWindowWidth() / 2, game_->getWindowHeight() / 2);
+					astPool_->disablAll();
+					fighterTR_->setPos((game_->getWindowWidth() - fighterTR_->getW()) / 2, (game_->getWindowHeight() - fighterTR_->getH()) / 2);
+					fighterTR_->setVel({ 0.0,0.0 });
+					fighterTR_->setRot(0);
 					scoreManager_->setRunning(false);
 					health_->removeLives(1);
 				}
@@ -39,12 +41,11 @@ void GameLogic::update() {
 					//Comprobación con las balas
 					for (int j = 0; j < bullerPool_->getPool().size(); j++) {
 						Bullet* currBullet = bullerPool_->getPool()[j];
-
-						if (Collisions::collidesWithRotation(*currAst->getPos(), currAst->getW(), currAst->getH(), currAst->getAngle(),
+						if (currBullet->isUsed() && Collisions::collidesWithRotation(*currAst->getPos(), currAst->getW(), currAst->getH(), currAst->getAngle(),
 							*currBullet->getPos(), currBullet->getScale()->getX(), currBullet->getScale()->getY(), currBullet->getAngle())) {
 							bullerPool_->onCollision(currBullet);
-							astPool_->onCollision(currBullet, currAst);
-							scoreManager_->addScore(10);//es prueba
+							astPool_->onCollision(currAst);
+							scoreManager_->addScore(currAst->getPoints());
 						}
 					}
 				}
