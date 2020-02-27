@@ -18,10 +18,10 @@ void AsteroidsMotion::update() {
 			);
 		}
 		//Si sale de la pantalla
-		if (pool_->getPool()[i]->getPos()->getX() < -pool_->getPool()[i]->getW()) pool_->getPool()[i]->setPos({ (double)game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY() });			//Izquierda
-		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) pool_->getPool()[i]->setPos({ 0, pool_->getPool()[i]->getPos()->getY() });	//Derecha
+		if (pool_->getPool()[i]->getPos()->getX() < 0) pool_->getPool()[i]->setPos({ (double)game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY() });			//Izquierda
+		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) pool_->getPool()[i]->setPos({ 0, pool_->getPool()[i]->getPos()->getY() });			//Derecha
 
-		if (pool_->getPool()[i]->getPos()->getY() < -pool_->getPool()[i]->getH()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), (double)game_->getWindowHeight() });		//Arriba
-		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowHeight()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), 0 });	//Abajo
+		if (pool_->getPool()[i]->getPos()->getY() < 0) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), (double)game_->getWindowHeight() });		//Arriba
+		else if (pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), 0 });			//Abajo
 	}
 }

@@ -52,7 +52,8 @@ void AsteroidsPool::generateAsteroids(int n) {
 		double vel = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100) / 100.0;
 		double level = rnd->nextInt(1, 4);
 		double angle = rnd->nextInt(0, 360);
-		currAsteroid->startAsteroid(pos, dir, vel, angle, level);
+		//currAsteroid->startAsteroid(pos, dir, vel, angle, level);
+		currAsteroid->startAsteroid({ 780, 580 }, dir, vel, angle, level); //EFECTO CURIOSO
 		asteroidsActive++;
 	}
 }
@@ -65,46 +66,3 @@ bool AsteroidsPool::validPosition(const Vector2D& astPos) {
 	}
 	else return true;
 }
-
-#pragma region implementación oscar
-//FUNCION BUENA
-/*
-
-void AsteroidsPool::generateAsteroids(int n) {
-	SRandBasedGenerator* rnd = new SRandBasedGenerator();
-	for (int i = 0; i < n; i++) {
-		Asteroid* currAsteroid = astPool.getPool()[i];
-		Vector2D pos = { (double)rnd->nextInt(0, game_->getWindowWidth()), (double)rnd->nextInt(0, game_->getWindowHeight()) };
-		Vector2D dir = { (double)rnd->nextInt(-100, 101) / 100.0, (double)rnd->nextInt(-100, 101) / 100.0 };
-		double vel = rnd->nextInt(ASTEROID_MIN_VEL * 100, ASTEROID_MAX_VEL * 100)/ 100.0;
-		double level = rnd->nextInt(1, 4);
-		double angle = rnd->nextInt(0, 360);
-		currAsteroid->startAsteroid(pos,dir,vel,angle,level);
-		asteroidsActive++;
-	}
-}
-//Busca un bullet no usado en el pool, si lo encuentra lo activa
-
-void AsteroidsPool::generateAsteroids(int n) {
-	SRandBasedGenerator* rnd = new SRandBasedGenerator();
-	astPool.getPool()[1]->isUsed();
-	astPool.getPool()[1]->setObject(true);
-	astPool.getPool()[1]->setAngle(rnd->nextInt(0, 360));
-	astPool.getPool()[1]->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
-	astPool.getPool()[1]->setPos({ 400, 0 });
-	astPool.getPool()[1]->setLevel(rnd->nextInt(1, 4));
-	astPool.getPool()[1]->startAsteroid({ 400, -50 }, { 0,0 }, 0, 0, 3);
-}
-//FUNCION DE PRUEBA
-void AsteroidsPool::generateAsteroids(int n) {
-	SRandBasedGenerator* rnd = new SRandBasedGenerator();
-	astPool.getPool()[1]->isUsed();
-	astPool.getPool()[1]->setObject(true);
-	astPool.getPool()[1]->setAngle(rnd->nextInt(0, 360));
-	astPool.getPool()[1]->setVel(rnd->nextInt(ASTEROID_MIN_VEL, ASTEROID_MAX_VEL));
-	astPool.getPool()[1]->setLevel(rnd->nextInt(1, 4));
-	astPool.getPool()[1]->startAsteroid({ 770, 480 }, { 0,0 }, 0, 0, 3);
-}
-*/
-#pragma endregion
-

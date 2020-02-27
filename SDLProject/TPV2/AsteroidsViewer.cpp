@@ -15,48 +15,27 @@ void AsteroidsViewer::draw() {
 			SDL_Rect rect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY(),
 				pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());	
 			texture_->render(rect);
-			/*
-			//HAY QUE RENDERIZAR UNA COPIAS SI:
-			//SE SALE POR EL LADO IZQUIERDO O POR EL DERECHO
-			if (pool_->getPool()[i]->getPos()->getX() < 0) {
-				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() + game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
+			
+			//CONDICION 1 (sale por la derecha de la pantalla)
+			if (pool_->getPool()[i]->getPos()->getX() + pool_->getPool()[i]->getW() > game_->getWindowWidth()) {
+				SDL_Rect rectCond1 = RECT(pool_->getPool()[i]->getPos()->getX() - game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
 					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
-				texture_->render(copyRect);
-			} 
-			else if (pool_->getPool()[i]->getPos()->getX() + pool_->getPool()[i]->getW() > game_->getWindowWidth()) {
-				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX() - game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY(),
+				texture_->render(rectCond1);
+			}
+
+			//CONDICION 2 (sale por abajo)
+			if (pool_->getPool()[i]->getPos()->getY() + pool_->getPool()[i]->getH() > game_->getWindowHeight()) {
+				SDL_Rect rectCond2 = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY() - game_->getWindowHeight(),
 					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
-				texture_->render(copyRect);
+				texture_->render(rectCond2);
 			}
 
-			//SE SALE ARRIBA O POR ABAJO
-			if (pool_->getPool()[i]->getPos()->getY() < - pool_->getPool()[i]->getH()) {
-				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY() + game_->getWindowHeight(),
+			//CONDICION 3 (1 y 2 a la vez)
+			if ((pool_->getPool()[i]->getPos()->getX() + pool_->getPool()[i]->getW() > game_->getWindowWidth()) && (pool_->getPool()[i]->getPos()->getY() + pool_->getPool()[i]->getH() > game_->getWindowHeight())) {
+				SDL_Rect rectCond3 = RECT(pool_->getPool()[i]->getPos()->getX() - game_->getWindowWidth(), pool_->getPool()[i]->getPos()->getY() - game_->getWindowHeight(),
 					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
-				texture_->render(copyRect);
-			} else if (pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight()) {
-				SDL_Rect copyRect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY() - game_->getWindowHeight(),
-					pool_->getPool()[i]->getW(), pool_->getPool()[i]->getH());
-				texture_->render(copyRect);
+				texture_->render(rectCond3);
 			}
-
-			//SE SALE POR UNA ESQUINA (FALTA Y ES IMPORTANTE)
-			//ABAJO-DERECHA
-			if ((pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) && (pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight())) {
-
-			}
-			//ARRIBA-DERECHA
-			else if ((pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) && pool_->getPool()[i]->getPos()->getY() < - pool_->getPool()[i]->getH()) { //VALOR NEGATIVO!
-
-			}
-			//ABAJO-IZQUIERDA
-			else if ((pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) && (pool_->getPool()[i]->getPos()->getY() > game_->getWindowHeight())) {
-
-			}
-			//ARRIBA-IZQUIERDA
-			else if ((pool_->getPool()[i]->getPos()->getX() > game_->getWindowWidth()) && pool_->getPool()[i]->getPos()->getY() < pool_->getPool()[i]->getH()) {
-
-			}*/
 		}
 	}
 }
