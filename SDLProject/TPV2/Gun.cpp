@@ -9,7 +9,6 @@ void Gun::update() {
 	InputHandler* ih = InputHandler::instance();
 	if (ih->keyDownEvent()) {
 		if (ih->isKeyDown(space_)) {
-			game_->getAudioMngr()->playChannel(Resources::Shoot, 0);
 
 			Vector2D bulletPos = fighterTr_->getPos() +  Vector2D(fighterTr_->getW() / 2, fighterTr_->getH() / 2) + 
 				Vector2D(0, -(fighterTr_->getH() / 2 + 5.0)).rotate(fighterTr_->getRot());

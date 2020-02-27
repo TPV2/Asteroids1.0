@@ -1,18 +1,13 @@
 #include "SDL_macros.h"
-#include "PingPong.h"
+#include "Asteroids.h"
 #include <assert.h>
 
-#include "BallMoveBehaviour.h"
 #include "GameCtrl.h"
 #include "GameLogic.h"
 #include "InputHandler.h"
-#include "PaddleKBCtrl.h"
-#include "PaddleMouseCtrl.h"
-#include "PaddleMoveBehaviour.h"
 #include "Rectangle.h"
 #include "ScoreManager.h"
 #include "ScoreViewer.h"
-#include "SimpleMoveBahviour.h"
 #include "Transform.h"
 #include "SDLGame.h"
 
@@ -36,30 +31,29 @@
 
 using namespace std;
 
-PingPong::PingPong() :
+Asteroids::Asteroids() :
 		game_(nullptr), //
 		entityManager_(nullptr), //
 		exit_(false) {
 	initGame();
 }
 
-PingPong::~PingPong() {
+Asteroids::~Asteroids() {
 	closeGame();
 }
 
-void PingPong::initGame() {
+void Asteroids::initGame() {
 
-	game_ = SDLGame::init("Ping Pong", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
+	game_ = SDLGame::init("Asteroids", _WINDOW_WIDTH_, _WINDOW_HEIGHT_);
 	entityManager_ = new EntityManager(game_);
-
 	createEntities();
 }
 
-void PingPong::closeGame() {
+void Asteroids::closeGame() {
 	delete entityManager_;
 }
 
-void PingPong::start() {
+void Asteroids::start() {
 	exit_ = false;
 
 	while (!exit_) {
@@ -75,11 +69,11 @@ void PingPong::start() {
 	}
 }
 
-void PingPong::stop() {
+void Asteroids::stop() {
 	exit_ = true;
 }
 
-void PingPong::handleInput() {
+void Asteroids::handleInput() {
 
 	InputHandler *ih = InputHandler::instance();
 
@@ -103,18 +97,19 @@ void PingPong::handleInput() {
 
 }
 
-void PingPong::update() {
+//Llama a los updates de todas las entidades
+void Asteroids::update() {
 	entityManager_->update();
 }
 
-void PingPong::render() {
+void Asteroids::render() {
 	SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x00AAAAFF));
 	SDL_RenderClear(game_->getRenderer());
 	entityManager_->draw();
 	SDL_RenderPresent(game_->getRenderer());
 }
 
-void PingPong::createEntities() {
+void Asteroids::createEntities() {
 	Entity* fighter = entityManager_->addEntity();
 	fighter->addComponent<Transform>();
 	fighter->addComponent<FighterViewer>(game_->getTextureMngr()->getTexture(Resources::Airplanes));

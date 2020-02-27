@@ -14,13 +14,7 @@ void BulletsViewer::draw() {
 		if (pool_->getPool()[i]->isUsed()) {
 			SDL_Rect rect = RECT(pool_->getPool()[i]->getPos()->getX(), pool_->getPool()[i]->getPos()->getY(),
 				pool_->getPool()[i]->getScale()->getX(), pool_->getPool()[i]->getScale()->getY());
-
 			texture_->render(rect);
-			/*system("cls");
-			cout << "Bala " << i << " " << pool_->getPool()[i]->isUsed() <<
-				" pos " << *pool_->getPool()[i]->getPos() <<
-				" vel " << *pool_->getPool()[i]->getVel() <<
-				endl;*/
 		}
 	}
  }

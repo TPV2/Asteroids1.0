@@ -8,7 +8,7 @@ void AsteroidsViewer::init() {
 	pool_ = GETCMP1_(AsteroidsPool);
 }
 
-//Si un bullet está siendo usado, se renderiza
+//Si un asteroide está siendo usado, se renderiza
 void AsteroidsViewer::draw() {
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {

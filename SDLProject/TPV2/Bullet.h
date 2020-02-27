@@ -27,7 +27,7 @@ public:
 		pos_({ 0.0,0.0 }), scale_({ BULLET_W,BULLET_H }), vel_(BULLET_VEL), angle_(0) {};
 	//Para saber si un objeto está en uso
 	bool isUsed() { return used_; };
-	//Para "setear" un objeto
+	//Para cambiar el estado de un objeto de usado a no usado y viceversa
 	void setObject(bool status) { used_ = status; };
 	void startBullet(Vector2D pos, Vector2D dir) {
 		vel_ = BULLET_VEL;

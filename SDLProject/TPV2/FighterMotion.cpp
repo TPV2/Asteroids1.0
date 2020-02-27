@@ -3,7 +3,7 @@
 #include "Entity.h"
 
 
-//Comprueba si un bullet está siendo usado, si es así, modifica la velocidad y posición
+//Aplica las diferentes fuerzas para que el figher se mueva
 void FighterMotion::update() {
 	//Sale por los laterales
 	if (fighterTr_->getPos().getX() < 0.0 || fighterTr_->getPos().getX() + fighterTr_->getW() > game_->getWindowWidth()) {

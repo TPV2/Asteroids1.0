@@ -32,7 +32,7 @@ public:
 		pos_({ 0.0,0.0 }), dir_({ 0, 0 }), vel_(0), angle_(0), level_(0) {};
 	//Para saber si un objeto está en uso
 	bool isUsed() { return used_; };
-	//Para "setear" un objeto
+	//Para cambiar un objeto de usado a no usado
 	void setObject(bool status) { used_ = status; };
 	void startAsteroid(Vector2D pos, Vector2D dir, double vel, double angle, double level) {
 		pos_ = pos;
@@ -43,7 +43,7 @@ public:
 		w_ = ASTEROID_W + ASTEROID_DIFERENCE * level;
 		h_ = ASTEROID_H + ASTEROID_DIFERENCE * level;
 		used_ = true;
-		cout << "ASTEROIDE: " << "POS{" << pos.getX() << "," << pos.getY() << "} LVL: " << level << ", VEL: " << vel << ", ANG: " << angle << endl;
+		//cout << "ASTEROIDE: " << "POS{" << pos.getX() << "," << pos.getY() << "} LVL: " << level << ", VEL: " << vel << ", ANG: " << angle << endl;
 	}
 
 #pragma region getters

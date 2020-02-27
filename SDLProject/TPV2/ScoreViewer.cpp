@@ -16,6 +16,7 @@ void ScoreViewer::init() {
 	scoreManager_ = GETCMP1_(ScoreManager);
 }
 
+//Renderiza el mensaje cuando ganas o pierdes
 void ScoreViewer::draw() {
 
 	Texture score(game_->getRenderer(),
@@ -33,7 +34,7 @@ void ScoreViewer::draw() {
 			gameOver->render(game_->getWindowWidth() / 2 - gameOver->getWidth() / 2,
 				game_->getWindowHeight() - gameOver->getHeight() - 150);
 		}
-		else
+		else//Has perdido
 		{
 			Texture* gameOver = game_->getTextureMngr()->getTexture(
 				Resources::GameOver);

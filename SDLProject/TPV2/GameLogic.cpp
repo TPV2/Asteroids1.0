@@ -20,7 +20,7 @@ GameLogic::~GameLogic() {
 void GameLogic::init() {
 	scoreManager_ = GETCMP1_(ScoreManager);
 }
-
+//Comprueba las colisiones entre las (balas / asteroides) y (asteroides/player)
 void GameLogic::update() {
 	if (scoreManager_->isRunning()) {
 		for (int i = 0; i < astPool_->getPool().size(); i++) {

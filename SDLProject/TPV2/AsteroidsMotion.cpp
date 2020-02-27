@@ -7,7 +7,7 @@ void AsteroidsMotion::init() {
 	pool_ = GETCMP1_(AsteroidsPool);
 }
 
-//Comprueba si un bullet está siendo usado, si es así, modifica la velocidad y posición
+//Comprueba si un asteroide está siendo usado, si es así, modifica la velocidad y posición
 void AsteroidsMotion::update() {
 	for (int i = 0; i < pool_->getPool().size(); i++) {
 		if (pool_->getPool()[i]->isUsed()) {
@@ -24,5 +24,4 @@ void AsteroidsMotion::update() {
 		if (pool_->getPool()[i]->getPos()->getY() < -pool_->getPool()[i]->getH()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), (double)game_->getWindowHeight() });		//Arriba
 		else if (pool_->getPool()[i]->getPos()->getX() > game_->getWindowHeight()) pool_->getPool()[i]->setPos({ pool_->getPool()[i]->getPos()->getX(), 0 });	//Abajo
 	}
-	//cout << "NO ME DA LA GANA PUTO MOVERME" << endl;	//DEBUG
 }

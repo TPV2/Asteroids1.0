@@ -4,9 +4,11 @@
 #include "Transform.h"
 #include <math.h>
 
+//Inicializador vacío
 FighterCtrl::FighterCtrl(): 
 	FighterCtrl(SDLK_RIGHT, SDLK_LEFT,SDLK_UP){}
 
+//Constructor con teclas
 FighterCtrl::FighterCtrl(SDL_Keycode right, SDL_Keycode left, SDL_Keycode up) :
 	Component(ecs::FighterCtrl),tr_(nullptr),right_(right),left_(left),up_(up){}
 
@@ -17,7 +19,6 @@ FighterCtrl::~FighterCtrl() {
 void FighterCtrl::init() {
 	tr_ = GETCMP1_(Transform);
 }
-
 
 void FighterCtrl::update() {
 	InputHandler* ih = InputHandler::instance();
