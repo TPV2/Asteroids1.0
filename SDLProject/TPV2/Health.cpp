@@ -20,12 +20,6 @@ void Health::draw() {
 }
 
 void Health::removeLives(int amount) {
-	if (amount <= lives_) {
-		lives_ -= amount;
-	}
-	else
-	{
-		throw new exception("Las vidas a quitar son mayores a las que tiene");
-	}
+	lives_ -= amount;
 }
 

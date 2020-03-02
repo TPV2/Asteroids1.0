@@ -19,6 +19,7 @@ void AsteroidsPool::disablAll() {
 
 //destruye un asteroide y lo divide entre dos si el nivel del asteroide es >= 1
 void AsteroidsPool::onCollision( Asteroid* a) {
+
 	a->setLevel(a->getLevel() - 1);
 	if (a->getLevel() >= 1) {
 		SRandBasedGenerator* rnd = new SRandBasedGenerator();

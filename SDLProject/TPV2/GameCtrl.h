@@ -7,7 +7,7 @@
 #include "Health.h"
 
 #pragma region Constantes
-const int ASTEROIDS_NUM = 10;
+const int ASTEROIDS_NUM = 1;
 #pragma endregion
 
 

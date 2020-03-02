@@ -22,8 +22,8 @@ public:
 #pragma region setters
 	void setWin(bool win) { win_ = win; };
 	void addScore(int value) { score_ += value; };
-	void resetScore() { score_ = 0; };
+	void resetScore() { score_ = 0; win_ = false; };
 	void setRunning(bool running) { running_ = running; };
-	void gameOver() { gameOver_ = true; };
+	void setGameOver(bool status) { gameOver_ = status; };
 #pragma endregion
 };

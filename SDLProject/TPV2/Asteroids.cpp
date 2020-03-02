@@ -134,6 +134,4 @@ void Asteroids::createEntities() {
 	gameManager->addComponent<ScoreViewer>();
 	gameManager->addComponent<GameLogic>(GETCMP2(fighter, Transform), GETCMP2(bulletsPool, BulletsPool),
 		GETCMP2(asteroidsPool, AsteroidsPool), GETCMP2(fighter, Health));
-	
-	game_->getAudioMngr()->playMusic(Resources::March, 1);
 }

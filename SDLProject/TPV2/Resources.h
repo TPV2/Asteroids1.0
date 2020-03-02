@@ -37,8 +37,10 @@ public:
 		Cheer,
 		Boooo,
 		March,
+		
 
 		// sound effects
+		Explosion,
 		Shoot,
 		Wall_Hit,
 		Paddle_Hit
